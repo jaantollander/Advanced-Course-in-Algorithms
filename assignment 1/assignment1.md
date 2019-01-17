@@ -5,14 +5,13 @@ date: \today
 header-includes: \usepackage{unicode-math}
 ---
 ## Problem 1
-a)
+### a)
 
 \[
 (x+x^2) ⋅ (1+x+x^3) = x + x^3+x^4+x^5 ∈ℤ_2[x]
 \]
 
-b)
-
+### b)
 \[
 \begin{aligned}
 a &= 1+x^2+x^3+x^4+x^6 ∈ℤ_2[x] \\
@@ -32,7 +31,7 @@ r&=1+x+x^3
 \]
 
 ## Problem 2
-a)
+### a)
 
 Given \(f=1234567\) and \(g=123\), find
 \[
@@ -62,7 +61,7 @@ Written in another form
 Using back substitution we obtain
 \[
 a⋅f+b⋅g = 1 \\
-b⋅g = -af+1
+b⋅g = -a⋅f+1
 \]
 where
 \[
@@ -81,4 +80,29 @@ g^{-1}&=b=230854.
 \end{aligned}
 \]
 
-b)
+
+### b)
+\[
+\begin{aligned}
+f &= 1+x+x^3+x^4 ∈ℤ_2[x] \\
+g &= 1+x^4 ∈ℤ_2[x]
+\end{aligned}
+\]
+
+Find
+\[
+\gcd(f,g)
+\]
+
+Euclidian algorithm
+\[
+\begin{aligned}
+1+x+x^3+x^4 &= 1⋅(1+x^4)+(x+x^3) \\
+1+x^4 &= x⋅(x+x^3)+(1+x^2) \\
+x+x^3 &= x⋅(1+x^2)+0
+\end{aligned}
+\]
+
+\[
+\gcd(f,g)=1+x^2∈ℤ_2[x]
+\]
