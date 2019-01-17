@@ -270,3 +270,44 @@ r_{n} \\ r_{n+1}
 \end{matrix}\right].
 \end{aligned}
 \]
+
+### b)
+\[
+R_i =
+\left[\begin{matrix}
+s_i & t_i \\
+s_{i+1} & t_{i+1} \\
+\end{matrix}\right]
+\]
+
+**Base case** \(i=0\) is true by definition. We'll assume \(i=n\) to be true and we'll show that also \(i=n+1\) is then true.
+\[
+\begin{aligned}
+R_{n+1}
+&=
+\left[\begin{matrix}
+s_{n+1} & t_{n+1} \\
+s_{(n+1)+1} & t_{(n+1)+1} \\
+\end{matrix}\right]
+\\
+R_n
+&=
+Q_{n+1}^{-1}
+\left[\begin{matrix}
+s_{n+1} & t_{n+1} \\
+s_{(n+1)+1} & t_{(n+1)+1} \\
+\end{matrix}\right]
+\\
+&=
+\left[\begin{matrix}
+q_{n+1} & 1 \\
+1 & 0
+\end{matrix}\right]
+\left[\begin{matrix}
+s_{n+1} & t_{n+1} \\
+s_{(n+1)+1} & t_{(n+1)+1} \\
+\end{matrix}\right]
+\end{aligned}
+\\
+...
+\]
