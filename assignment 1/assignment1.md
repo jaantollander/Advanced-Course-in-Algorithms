@@ -111,23 +111,25 @@ From the output we can see that
 
 
 ## Problem 4
-Initial values
+The initial values in the traditional Euclidian algorithm are
 \[
 \begin{aligned}
 r_0=f, s_0=1, t_0=0, \\
-r_1=g, s_1=0, t_1=1, \\
+r_1=g, s_1=0, t_1=1. \\
 \end{aligned}
 \]
 
+The subsequent values when \(i≥1\) are given by recursive relationship as
 \[
 \begin{aligned}
-q_i = quo(r_{i-1},r_i) \\
-r_{i+1} = r_{i-1} - q_i r_i \\
-s_{i+1} = s_{i-1} - q_i s_i \\
-t_{i+1} = t_{i-1} - q_i t_i
+q_i = quo(r_{i-1},r_i), \\
+r_{i+1} = r_{i-1} - q_i r_i, \\
+s_{i+1} = s_{i-1} - q_i s_i, \\
+t_{i+1} = t_{i-1} - q_i t_i.
 \end{aligned}
 \]
 
+The matrices \(R\) and \(Q\) are defined
 \[
 \begin{aligned}
 R_0 =
@@ -135,10 +137,7 @@ R_0 =
 s_0 & t_0 \\
 s_1 & t_1 \\
 \end{matrix}\right]
-\end{aligned}
-\]
-
-\[
+\end{aligned},
 \begin{aligned}
 Q_i =
 \left[\begin{matrix}
@@ -146,21 +145,40 @@ Q_i =
 1 & -q_i \\
 \end{matrix}\right]
 \end{aligned}
+, i=1,2,…,l.
 \]
-
+and
 \[
-R_i = Q_i Q_{i-1} ⋯ Q_1 R_0
+R_i = Q_i Q_{i-1} ⋯ Q_1 R_0, i=0,1,…,l.
 \]
 
+Note that \(Q\) is also invertible
 \[
 Q_i^{-1}=
 \left[\begin{matrix}
 q_i & 1 \\
 1 & 0
-\end{matrix}\right]
+\end{matrix}\right].
 \]
 
+Another useful relation is
+\[
+\begin{aligned}
+R_{i+1} &= Q_{i+1} Q_i Q_{i-1} ⋯ Q_1 R_0, i=0,1,…,l \\
+&=Q_{i+1} R_i.
+\end{aligned}
+\]
+
+<!-- \[
+\begin{aligned}
+r_{i+1} &= r_{i-1} - q_i r_i \\
+r_{i+1} + q_i r_i &= r_{i-1} \\
+\end{aligned}
+\] -->
+
+
 ### a)
+Show that invariant holds for all \(i=0,1,…,l\):
 \[
 R_i
 \left[\begin{matrix}
@@ -169,17 +187,17 @@ f \\ g
 =
 \left[\begin{matrix}
 r_i \\ r_{i+1}
-\end{matrix}\right]
+\end{matrix}\right].
 \]
 
-**Base case**: \(i=0\)
+Lets show that the **base case** \(i=0\) is true.
 \[
 \begin{aligned}
 R_0
 \left[\begin{matrix}
 f \\ g
 \end{matrix}\right]
-=
+&=
 \left[\begin{matrix}
 r_0 \\ r_{1}
 \end{matrix}\right]
@@ -191,7 +209,7 @@ r_0 \\ r_{1}
 \left[\begin{matrix}
 f \\ g
 \end{matrix}\right]
-=
+&=
 \left[\begin{matrix}
 r_0 \\ r_{1}
 \end{matrix}\right]
@@ -199,29 +217,14 @@ r_0 \\ r_{1}
 \left[\begin{matrix}
 f \\ g
 \end{matrix}\right]
-=
+&=
 \left[\begin{matrix}
 r_0 \\ r_{1}
-\end{matrix}\right]
+\end{matrix}\right].
 \end{aligned}
 \]
 
-We will assume that the **case** \(i=n\) is true. Then we'll show that also case \(i=n+1\) is true.
-
-\[
-\begin{aligned}
-R_{i+1} &= Q_{i+1} Q_i Q_{i-1} ⋯ Q_1 R_0 \\
-&=Q_{i+1} R_i
-\end{aligned}
-\]
-
-\[
-\begin{aligned}
-r_{i+1} &= r_{i-1} - q_i r_i \\
-r_{i+1} + q_i r_i &= r_{i-1} \\
-\end{aligned}
-\]
-
+We will assume that the **case** \(i=n≥1\) is true and show that then also **case** \(i=n+1\) is true.
 \[
 \begin{aligned}
 R_{n+1}
@@ -274,6 +277,7 @@ r_{n} \\ r_{n+1}
 \]
 
 ### b)
+Show that invariant holds for all \(i=0,1,…,l\):
 \[
 R_i =
 \left[\begin{matrix}
@@ -282,7 +286,7 @@ s_{i+1} & t_{i+1} \\
 \end{matrix}\right]
 \]
 
-**Base case** \(i=0\) is true by definition. We'll assume \(i=n\) to be true and we'll show that also \(i=n+1\) is then true.
+**Base case** \(i=0\) is true by definition. We'll assume case \(i=n≥1\) to be true and then show that \(i=n+1\) is also true.
 \[
 \begin{aligned}
 R_{n+1}
@@ -337,21 +341,11 @@ r_{l-1} &= q_{l} r_{l} +r_{l+1} \\
 \end{aligned}
 \]
 
-Then the algorithm terminates when \(r_{l+1}=0\). This means that \(r_{l-1}\) is divisible by \(r_l\) and then also \(r_i\) where \(0≤i≤l-1\) is divisible by \(r_l\).
-\[
-\begin{aligned}
-r_{l+1}=0 &⟹ r_{l}∣r_{l-1} \\
-&⟹ r_{l}∣r_{l-2} \\
-&⋮ \\
-&⟹ r_l∣r_{0}
-\end{aligned}
-\]
-
-Divisor \(r_l\) is greatest otherwise some \(r_i=0\) where \(i∈[0, l]\).
+Then the algorithm terminates when \(r_{l+1}=0\). This means that \(r_{l-1}\) is divisible by \(r_l\) which implies that \(r_{l-2}\) is divisible by \(r_l\) and by this logic all \(r_{l-1},…,r_0\) are divisible by \(r_l\). Divisor \(r_l\) must be the greatest common divisor, otherwise there would exists \(i∈[0, l]\) such that \(r_i=0\).
 
 
 ### d)
-By using the statements proven in (a) and (b) we have
+By using the statements proven in sections (a) and (b) we have
 \[
 \begin{aligned}
 R_i
@@ -374,9 +368,7 @@ f \\ g
 \left[\begin{matrix}
 r_i \\ r_{i+1}
 \end{matrix}\right]
+\\
+s_i f + t_i g &= r_i.
 \end{aligned}
-\]
-which implies
-\[
-s_i f + t_i g = r_i.
 \]
