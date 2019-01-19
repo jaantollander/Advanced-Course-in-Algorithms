@@ -1,6 +1,6 @@
 ---
-title: Advanced Course in Algorithms - Problem Set 1
-author: Jaan Tollander de Balsch
+title: CS-E4500 Problem Set 1
+author: Jaan Tollander de Balsch - 452056
 date: \today
 header-includes: \usepackage{unicode-math}
 ---
