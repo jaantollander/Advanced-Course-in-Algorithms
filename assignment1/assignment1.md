@@ -1,5 +1,5 @@
 ---
-title: Advances Course in Algorithms - Problem Set 1
+title: Advanced Course in Algorithms - Problem Set 1
 author: Jaan Tollander de Balsch
 date: \today
 header-includes: \usepackage{unicode-math}
