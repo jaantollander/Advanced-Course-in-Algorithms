@@ -1,5 +1,5 @@
 ---
-title: CS-E4500 Problem Set 1
+title: CS-E4500 Problem Set 2
 author: Jaan Tollander de Balsch - 452056
 date: \today
 header-includes: \usepackage{unicode-math}
@@ -84,7 +84,17 @@ DFT_ω(f * g) &= [(f*g)(ω^0),...,(f*g)(ω^{n-1})] \\
 
 
 ## Problem 3
+**Input**: A polynomial \(A(x)=∑_{j=0}^{n-1} a_j x^j\) in the ring \(R[x]\) and roots of unity \(ω^j\) for \(j=0,1,...,n-1\) where \(ω\) is the primitive root of unity in \(R\).
 
+**Output**: Vector of values of the polynomial evaluated at the roots of unity \([A(ω^0),A(ω^1),...,A(ω^{n-1})]∈R^n\).
+
+**Idea**: Recursively evaluate polynomial
+
+\[
+A(x) = A
+\]
+
+Algorithm
 
 
 ## Problem 4
