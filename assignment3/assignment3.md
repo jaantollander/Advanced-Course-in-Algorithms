@@ -43,7 +43,7 @@ where the operation \(pad(n,m)\) pads the integer \(n\) with \(m\) zeroes. This 
 
 Then the addition of the two numbers given is
 \[
-(1452332632_7, 7_{10})+(1345053103_7, 3_10)=(13452313362632_7, 7_{10})
+(1452332632_7, 7_{10})+(1345053103_7, 3_{10})=(13452313362632_7, 7_{10})
 \]
 equivalently in radix-point notation
 \[
@@ -52,6 +52,33 @@ equivalently in radix-point notation
 
 
 ## Problem 2
+
+\[
+a = q b + r
+\]
+
+\[
+f(x) = a_0 + a_1 x + … + a_n x^n
+\]
+
+\[
+\begin{aligned}
+x^n f(x^{-1}) &= x^n (a_0 + a_1 x^{-1} + … + a_n x^{-n}) \\
+&= x_0 x^n + a_1 x^{n-1} + ... + a_n \\
+&= \operatorname{rev}_n f(x)
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+\operatorname{rev}_n a(x) &= x^n a(x^{-1}) \\
+&= x^n (q(x^{-1}) b(x^{-1}) + r(x^{-1})) \\
+&= x^n q(x^{-1}) b(x^{-1}) + x^n r(x^{-1}) \\
+&= (x^{n-m} q(x^{-1})) (x^m b(x^{-1})) + x^{n-m+1} (x^{m-1} r(x^{-1})) \\
+&= \operatorname{rev}_{n-m} q(x) \operatorname{rev}_m b + x^{n-m+1} \operatorname{rev}_{m-1} r
+\end{aligned}
+\]
+
 
 ## Problem 3
 ## Problem 4
