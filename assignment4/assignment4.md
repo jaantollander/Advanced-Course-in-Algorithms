@@ -4,13 +4,33 @@ author: Jaan Tollander de Balsch - 452056
 date: \today
 header-includes: \usepackage{unicode-math}
 ---
-
 ## Problem 1
-**Secret sharing** ... [@modern_computer_algebra, chapter 5.3]
+Let \(F\) be a finite field. In this case \(F=ℤ_p=\{0,1,...,p\}\) for \(p\) prime. Let \(φ_0∈F\) be a **secret** that we'll split into \(s\) **shares** such that **knowledge** of any \(k\) shares enables recovery of the secret. [@modern_computer_algebra, chapter 5.3]
+
+### 1.
+Let \(ξ_1,ξ_2,...,ξ_s∈F\) be **distinct** and **nonzero**.
+
+
+### 2.
+Select elements \(φ_1,φ_2,...,φ_{k-1}\) independently and uniformly at random.
+
+
+### 3.
+Let \(f=φ_0+φ_1x+φ_2x^2+...+φ_{k-1}x^{k-1}∈F[x].\)
+
+
+### 4.
+For \(j=1,2,...,s\) share \(j\) is the pair \((ξ_j, f(ξ_j))∈F^2.\)
+
+
+### Recovering the Secret
+The secret can be recovered by interpolating the \(k\) shares back into polynomial \(f\) and evaluation the polynomial at \(f(ξ_0)=f(0)=φ_0.\)
+
+TODO: Lagrange interpolation
 
 
 ## Problem 2
-Let \(q,r∈R[x]\) with \(a = q b + r\) and \(\deg r < \deg b\) where \(b\) monic.
+Let \(R\) be a ring and let \(q,r∈R[x]\) with \(a = q b + r\) and \(\deg r < \deg b\) where \(b\) monic.
 
 ### (a)
 Show that for all \(ξ∈R\) and \(f∈R[x]\) we have \(f(ξ)=f \operatorname{rem}\,(x-ξ).\)
