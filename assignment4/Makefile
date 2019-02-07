@@ -12,9 +12,6 @@ pdf:
 	--variable papersize=a4paper \
 	--filter pandoc-citeproc \
 	--bibliography=bibliography.bib \
-	--csl=https://raw.githubusercontent.com/citation-style-language/styles/master/harvard-anglia-ruskin-university.csl \
-
-# --csl=https://www.zotero.org/styles/frontiers-in-applied-mathematics-and-statistics \
 
 clean:
 	rm $(BUILDDIR)/*
