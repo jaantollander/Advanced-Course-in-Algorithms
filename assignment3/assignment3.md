@@ -4,8 +4,7 @@ author: Jaan Tollander de Balsch - 452056
 date: \today
 header-includes: \usepackage{unicode-math}
 ---
-@modern_computer_algebra
-
+In this report I have used @modern_computer_algebra, chapter *Division with Remainder using Newton Iteration* as a resource.
 
 ## Problem 1
 Arithmetic with rational numbers in radix-point representation.
@@ -79,6 +78,8 @@ where \(n=\deg a≥\deg b=m\) and \(\deg r≤m-1\) is
 
 
 ## Problem 3
+![](figures/radix-point-multiplication.png)
+
 Two numbers in radix-point representation
 \[
 α=s B^e ∑_{i=0}^{d-1} α_i B^{-i}
@@ -103,6 +104,7 @@ where the exponent \(\hat{e}=\max\{e,\tilde{e}\}=e\) or \(\hat{e}=\max\{e,\tilde
 \]
 is the number of digits in sum where \(+1\) accounts for the carry.
 <!-- The digits \(\hat{α}_i\) are the sum of -->
+
 
 
 ## Problem 4
