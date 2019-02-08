@@ -221,7 +221,7 @@ Show that we can compute the coefficients of \(L\) in \(O(M(e)\log e)\) operatio
 
 ---
 
-By expanding the Lagrange polynomials \(e∈\{1,2,4\}\) we can notice the common substructure within the computations
+The common substructure within the polynomials is evident if we expand the Lagrange polynomials with \(e∈\{1,2,4\}\)
 \[
 \begin{aligned}
 L_1(x)=& λ_0 \\
@@ -235,29 +235,41 @@ L_4(x)=& λ_0 (x-ξ_1) (x-ξ_2) (x-ξ_3) + \\
 \end{aligned}
 \]
 
-It can be generalized into a formula
+As a binary tree
 
+![](figures/assignment4.png)
 
 ---
 
-In each non-root node the algorithm does the following computations:
+The generalized form. Let the depths of the nodes in the binary tree starting from root be \(d=0,1,..,k\) where \(k = \log e.\)
+
+Each **leaf node** \(v∈\{0,1\}^k\)
 \[
 \begin{aligned}
-s =& s_0 ⋅ s_1 \\
-l =& l_0 ⋅ s_1 + l_1 ⋅ s_0.
+s_v =& x-ξ_v \\
+l_v =& λ_v
 \end{aligned}
 \]
-Since \(n=\deg s_i>\deg l_i\) for \(i\in\{0,1\}\) the total computational cost in each node is \(O(n \log n)\) using fast polynomial multiplication.
 
----
-
-Total cost from multiplication operations, i.e. number of nodes \(2^i\) in depth \(i\) × the cost multiplying polynomials with maximum degree of \(n_i=2^{\log e - i}\)
+In each **non-leaf** node \(u=\{0,1\}^{k'}\) where \(0≤k' < k\) the algorithm does the following computations
 \[
 \begin{aligned}
-& ∑_{i=0}^{\log e} 2^{i} ⋅ O(2^{\log e - i} \log 2^{\log e - i}) \\
-=& ∑_{i=0}^{\log e} O(2^{i} ⋅ 2^{\log e - i} \log 2^{\log e - i}) \\
-=& ∑_{i=0}^{\log e} O(2^{\log e} \log 2^{\log e-i}) \\
-=& O(e \log e)
+s_u =& s_{u0} ⋅ s_{u1} \\
+l_u =& l_{u0} ⋅ s_{u1} + l_{u1} ⋅ s_{u0}.
+\end{aligned}
+\]
+The algorithm will terminate once the **root** node \(ε\) is reached. Then \(l_ε=L(x)\). There is no need to calculate \(s_ε\). Since \(n=\deg s_u>\deg l_u\) for all \(u\in\{0,1\}^k\) the total computational complexity in each node is \(O(n \log n)\) using **fast polynomial multiplication**.
+
+Total computational complexity from the multiplication operations can be calculated multiplying the number of nodes \(m_i\) with the complexity of multiplying polynomials with maximum degree of \(n_i\) at depth \(i\) and summing over the total depth of the binary tree \(i=0,1,...,k\). At depth \(i\) the binary tree has \(m_i=2^i\) nodes and polynomials have maximum degree of \(n_i=2^{\log e - i}\).
+\[
+\begin{aligned}
+& ∑_{i=0}^{\log e} m_i ⋅ O(n_i \log n_i) \\
+=& ∑_{i=0}^{\log e} 2^{i} ⋅ O(2^{\log e - i} \log 2^{\log e - i}) \\
+=& O\left(∑_{i=0}^{\log e} 2^{i} ⋅ 2^{\log e - i} \log 2^{\log e - i}\right) \\
+=& O\left(∑_{i=0}^{\log e} e (\log e-i)\right) \\
+=& O\left(e∑_{i=0}^{\log e} i\right) \\
+=& O\left(e ⋅ \frac{\log e(\log e + 1)}{2}\right) \\
+=& O(e (\log e)^2).
 \end{aligned}
 \]
 
