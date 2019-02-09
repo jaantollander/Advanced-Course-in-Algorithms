@@ -215,7 +215,7 @@ a \operatorname{rem} c = (a \operatorname{rem} b) \operatorname{rem} c.
 ## Problem 3
 Let \(R\) be a ring, let \(ξ_0,ξ_1,...,ξ_{e-1}∈R\), and \(λ_0,λ_1,...,λ_{e-1}∈R\) be given as input. The form of the Lagrange interpolation polynomial suggests that one should first seek to construct the coefficients of the polynomial
 \[
-L_e(x)=∑_{i=0}^{e-1} λ ∏_{i=0\\i≠j}^{e-1}(x-ξ_j)∈R.
+L_e(x)=∑_{i=0}^{e-1} λ_i ∏_{j=0\\j≠i}^{e-1}(x-ξ_j)∈R.
 \]
 Show that we can compute the coefficients of \(L\) in \(O(M(e)\log e)\) operations in \(R\). You may assume that \(e=2^k\) for a nonnegative integer \(k\). Here \(M(e)=e\log e \log\log e.\)
 
@@ -277,6 +277,45 @@ Total computational complexity from the multiplication operations can be calcula
 
 
 ## Problem 4
+Let \(R\) be a ring and let \(ξ_0,ξ_1,...,ξ_{e-1}∈R\) and \(η_0,η_1,...,η_{e-1}∈R\) such that \(ξ_i-ξ_j\) is a unit in \(R\) for all \(0≤i < j≤e-1\). Shot that we can compute the coefficients of the Lagrange interpolation polynomial
+\[
+L(x)=∑_{i=0}^{e-1}\left(η_i ∏_{j=0\\j≠i}^{e-1}(ξ_i-ξ_j)^{-1}\right) ∏_{j=0\\j≠i}^{e-1}(x-ξ_j)∈R[x]
+\]
+that satifies \(L(ξ_i)=η_i\) for all \(i=0,1,...,e-1\) in \(O(M(e)\log e)\) operations in \(R\). You may assume that \(e=2^k\) for a nonnegative integer \(k\).
 
+---
+
+Let \(f(x)\) be a polynomial
+\[
+f(x)=∑_{i=0}^{e-1} λ_i ∏_{j=0\\j≠i}^{e-1}(x-ξ_j),
+\]
+where \(λ_i=1\) for all \(i=0,1,...,e-1\). Then it's coefficients can be calculated using the algorithm from problem 3 in \(O(M(e)\log e)\) operations.
+
+---
+
+By batch evaluation the polynomial \(f\) in points \(ξ_k\) where \(k=0,1,...,e-1\) we have
+\[
+\begin{aligned}
+f(ξ_k)&=∑_{i=0}^{e-1} ∏_{j=0, j≠i}^{e-1}(ξ_k-ξ_j) \\
+&=∏_{j=0, j≠k}^{e-1}(ξ_k-ξ_j). \\
+\end{aligned}
+\]
+Batch evaluation can be done in \(O(M(e)\log e)\) operations. The inverses of these values are the terms inside the Lagranges interpolation polynomial
+\[
+\begin{aligned}
+f(ξ_k)^{-1}&=\left(∏_{j=0, j≠k}^{e-1}(ξ_k-ξ_j)\right)^{-1} \\
+&=∏_{j=0, j≠k}^{e-1}(ξ_k-ξ_j)^{-1}.
+\end{aligned}
+\]
+
+---
+
+Using the results above, the Lagranges interpolation polynomial takes form
+\[
+L(x)=∑_{i=0}^{e-1} λ_i ∏_{j=0, j≠i}^{e-1}(x-ξ_j)
+\]
+where \(λ_i=η_i f(ξ_i)^{-1}\) for all \(i=0,1,...,e-1\). Then it's coefficients can be calculated using the algorithm from problem 3 in \(O(M(e)\log e)\) operations.
+
+Therefore the total amount of operations is \(O(M(e)\log e).\)
 
 ## References
