@@ -235,13 +235,15 @@ L_4(x)=& λ_0 (x-ξ_1) (x-ξ_2) (x-ξ_3) + \\
 \end{aligned}
 \]
 
-As a binary tree
+As can be seen, \(L_1\) is the base case (leaf nodes) and \(L_2\) (non-leaf nodes) form the rule for the recursive case. Then \(L_4\) can be computed using these rules as seen on the binary tree representation.
 
 ![](figures/assignment4.png)
 
 ---
 
-The generalized form. Let the depths of the nodes in the binary tree starting from root be \(d=0,1,..,k\) where \(k = \log e.\)
+The **generalized form**: Let the depths of the nodes in the binary tree starting from root be \(i=0,1,..,k\) where \(k = \log e.\) We'll denote the nodes with binary string \(\{0,1\}^i=\{\{ε\},\{0,1\},\{00,01,10,11\},...\}\) for depths \(i=0,1,2,...\). There are binary \(2^{i}\) strings per at depth \(i\), i.e. number of nodes at depth \(i\).
+
+TODO: the maximum size of polynomial at depth \(i\)
 
 Each **leaf node** \(v∈\{0,1\}^k\)
 \[
