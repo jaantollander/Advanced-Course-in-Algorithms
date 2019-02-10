@@ -4,7 +4,8 @@ author: Jaan Tollander de Balsch - 452056
 date: \today
 header-includes: \usepackage{unicode-math}
 ---
-[@modern_computer_algebra, chapter 5.1-5.4 and 10.1-10.3]
+This report uses algorithms from @modern_computer_algebra, chapters 5.1-5.4 and 10.1-10.3.
+
 
 ## Problem 1
 Let \(F\) be a finite field. In this case \(F=ℤ_p=\{0,1,...,p\}\) for \(p\) prime. Let \(φ_0∈F\) be a **secret** that we'll split into \(s\) **shares** such that **knowledge** of any \(k\) shares enables recovery of the secret.
@@ -16,7 +17,7 @@ Let \(F\) be a finite field. In this case \(F=ℤ_p=\{0,1,...,p\}\) for \(p\) pr
 
 The secret can be **recovered** by interpolating the \(k\) shares back into polynomial \(f\) and evaluation the polynomial at \(f(ξ_0)=f(0)=φ_0.\) We'll use Lagrange interpolation as the interpolating algorithm.
 
----
+Implementation in Python code
 
 ```python
 from sympy import *
@@ -53,7 +54,7 @@ $$\left [ 3, \quad 51, \quad 85, \quad 33, \quad 7, \quad 35, \quad 81, \quad 2,
 
 **Step 2**
 ```python
-phi = random.sample(Z_p, knowledge-1)
+phi = random.choises(Z_p, k=knowledge-1)
 phi
 ```
 
@@ -243,13 +244,11 @@ As can be seen, \(L_1\) is the base case (leaf nodes) and \(L_2\) (non-leaf node
 
 The **generalized form**: Let the depths of the nodes in the binary tree starting from root be \(i=0,1,..,k\) where \(k = \log e.\) We'll denote the nodes with binary string \(\{0,1\}^i=\{\{ε\},\{0,1\},\{00,01,10,11\},...\}\) for depths \(i=0,1,2,...\). There are binary \(2^{i}\) strings per at depth \(i\), i.e. number of nodes at depth \(i\).
 
-TODO: the maximum size of polynomial at depth \(i\)
-
-Each **leaf node** \(v∈\{0,1\}^k\)
+Associate each **leaf node** \(v∈\{0,1\}^k\)
 \[
 \begin{aligned}
 s_v =& x-ξ_v \\
-l_v =& λ_v
+l_v =& λ_v.
 \end{aligned}
 \]
 
@@ -275,6 +274,7 @@ Total computational complexity from the multiplication operations can be calcula
 \end{aligned}
 \]
 
+(Not sure where the \(\log\log e\) term should come from.)
 
 ## Problem 4
 Let \(R\) be a ring and let \(ξ_0,ξ_1,...,ξ_{e-1}∈R\) and \(η_0,η_1,...,η_{e-1}∈R\) such that \(ξ_i-ξ_j\) is a unit in \(R\) for all \(0≤i < j≤e-1\). Shot that we can compute the coefficients of the Lagrange interpolation polynomial
@@ -283,39 +283,42 @@ L(x)=∑_{i=0}^{e-1}\left(η_i ∏_{j=0\\j≠i}^{e-1}(ξ_i-ξ_j)^{-1}\right) ∏
 \]
 that satifies \(L(ξ_i)=η_i\) for all \(i=0,1,...,e-1\) in \(O(M(e)\log e)\) operations in \(R\). You may assume that \(e=2^k\) for a nonnegative integer \(k\).
 
----
 
+### 1.
 Let \(f(x)\) be a polynomial
 \[
 f(x)=∑_{i=0}^{e-1} λ_i ∏_{j=0\\j≠i}^{e-1}(x-ξ_j),
 \]
 where \(λ_i=1\) for all \(i=0,1,...,e-1\). Then it's coefficients can be calculated using the algorithm from problem 3 in \(O(M(e)\log e)\) operations.
 
----
 
-By batch evaluation the polynomial \(f\) in points \(ξ_k\) where \(k=0,1,...,e-1\) we have
+### 2.
+Using batch evaluation on the polynomial \(f\) in points \(ξ_k\) where \(k=0,1,...,e-1\) we have
 \[
 \begin{aligned}
 f(ξ_k)&=∑_{i=0}^{e-1} ∏_{j=0, j≠i}^{e-1}(ξ_k-ξ_j) \\
 &=∏_{j=0, j≠k}^{e-1}(ξ_k-ξ_j). \\
 \end{aligned}
 \]
-Batch evaluation can be done in \(O(M(e)\log e)\) operations. The inverses of these values are the terms inside the Lagranges interpolation polynomial
+Batch evaluation can be done in \(O(M(e)\log e)\) operations. The inverses of these values are the terms inside the Lagrange interpolation polynomial
 \[
 \begin{aligned}
 f(ξ_k)^{-1}&=\left(∏_{j=0, j≠k}^{e-1}(ξ_k-ξ_j)\right)^{-1} \\
 &=∏_{j=0, j≠k}^{e-1}(ξ_k-ξ_j)^{-1}.
 \end{aligned}
 \]
+Computing the inverses can be done in \(e\log e\) using fast multiplication.
 
----
 
+### 3.
 Using the results above, the Lagranges interpolation polynomial takes form
 \[
 L(x)=∑_{i=0}^{e-1} λ_i ∏_{j=0, j≠i}^{e-1}(x-ξ_j)
 \]
 where \(λ_i=η_i f(ξ_i)^{-1}\) for all \(i=0,1,...,e-1\). Then it's coefficients can be calculated using the algorithm from problem 3 in \(O(M(e)\log e)\) operations.
 
+### 4.
 Therefore the total amount of operations is \(O(M(e)\log e).\)
+
 
 ## References
