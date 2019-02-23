@@ -4,8 +4,6 @@ author: Jaan Tollander de Balsch - 452056
 date: \today
 header-includes: \usepackage{unicode-math}
 ---
-This report uses algorithms from @modern_computer_algebra, chapters ???.
-
 ## Problem 1
 Let \(F\) be a field, Show that a nonzero polynomial \(f∈F[x]\) of degree at most \(d\) has at most \(d\) distinct roots.
 
@@ -117,5 +115,37 @@ f(Ξ) &= [5, 12, 6, 0, 7, 1] ≠ \\
 
 
 ## Problem 3
+[@modern_computer_algebra, chapter 11.1]
+
+Let a polynomial \(f\) be defined
+\[
+f = f_n x^{n} + f_{n-1} x^{n-1} + ... + f_0 ∈ 𝔽[x]
+\]
+where the leading coefficient \(f_n≠0\).
+
+A **truncated polynomial** is defined
+\[
+f↾k = f \operatorname{quo} x^{n-k} = f_n x^{k} + f_{n-1} x^{k-1} + ... + f_{n-k},
+\]
+where \(k∈ℤ\)
+
+<!-- \[
+\begin{aligned}
+f↾k &= 0, k<0 \\
+f↾-∞ &= 0 \\
+0↾k &= 0
+\end{aligned}
+\] -->
+
+For all \(i∈ℕ_0\) we have
+\[
+(f x^i)↾k=f↾k
+\]
+
+
+**Coinciding polynomials**
+
+Quotients
+
 ## Problem 4
 ## References
