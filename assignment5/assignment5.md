@@ -115,9 +115,7 @@ f(Ξ) &= [5, 12, 6, 0, 7, 1] ≠ \\
 
 
 ## Problem 3
-[@modern_computer_algebra, chapter 11.1]
-
-Let a polynomial \(f\) be defined
+The solution to this problem are based on [@modern_computer_algebra, chapter 11.1]. Let a polynomial \(f\) be defined
 \[
 f = f_n x^{n} + f_{n-1} x^{n-1} + ... + f_0 ∈ 𝔽[x]
 \]
@@ -125,9 +123,7 @@ where the leading coefficient \(f_n≠0\) and \(n=\deg f\) is the degree. A **tr
 \[
 f↾k = f \operatorname{quo} x^{n-k} = f_n x^{k} + f_{n-1} x^{k-1} + ... + f_{n-k},
 \]
-where \(k∈ℤ\).
-
-Then a polynomial \(f\) can be written in form
+where \(k∈ℤ\). Then the polynomial \(f\) can be written in form
 \[
 f = (f↾k) x^{n-k} + r,
 \]
@@ -148,7 +144,7 @@ f↾-∞ &= 0 \\
 
 ---
 
-Let \(f,g,f' ,g'\) be nonzero polynomials in field \(𝔽[x]\) such that \(\deg f ≥ \deg g\) and \(\deg f' ≥ \deg g'\) and which **coincide up to** \(k∈ℕ_0\)
+Let \(f,g,f' ,g'\) be polynomials in field \(𝔽[x]\) such that \(\deg f ≥ \deg g≥0\) and \(\deg f'≥\deg g'≥0\) and which **coincide up to** \(k∈ℕ_0\)
 \[
 (f, g) ≡_k (f', g').
 \]
@@ -160,25 +156,20 @@ g↾(k-(\deg f - \deg g)) &= g'↾(k-(\deg f' - \deg g')).
 \end{aligned}
 \]
 
-TODO: ...
-
+Then written in the division form with quotients and remainders
 \[
 \begin{aligned}
 f &= qg + r, \deg r < \deg g \\
 f' &= q'g' + r', \deg r' < \deg g' \\
 \end{aligned}
 \]
-
-\[
-q = q'
-\]
+the remainders \(q=q'\) are equal.
 
 ---
 
-**Proof**:
+**Proof**: (This might not be the cleanest way to prove this.)
 
-
-For simplicity lets denote
+For simplicity lets denote the degrees with
 \[
 \begin{aligned}
 \deg f &= n \\
@@ -196,22 +187,24 @@ then
 \[
 \begin{aligned}
 f↾k &= f'↾k, \\
-g↾k' &= g'↾k'.
+g↾k' &= g'↾k',
 \end{aligned}
 \]
 where
 \[
-k'=k-(n-m)=k-(n'-m')
+k'=k-(n-m)=k-(n'-m')=k-δ.
 \]
 
 We also have the following indentities
 \[
+\begin{aligned}
 n = n'+δ \\
 m = m'+δ \\
 m-k'=n-k
+\end{aligned}
 \]
 
-Writing the polynoamials in terms of their *truncations*
+Now by writing the polynoamials in terms of their *truncations* we obtain
 \[
 \begin{aligned}
 f' &= (f'↾k) x^{n'-k} + r_{f'}, \deg r_{f'} < n'-k \\
@@ -225,7 +218,7 @@ f &= (f↾k) x^{n-k} + r_f, \deg r_f< n-k \\
 &= (f'-r_{f'}) x^δ + r_f
 \end{aligned}
 \]
-
+and
 \[
 \begin{aligned}
 g' &= (g'↾k') x^{m'-k'} + r_{g'}, \deg r_{g'} < m'-k'
@@ -240,14 +233,14 @@ g &= (g↾k') x^{m-k'} + r_g, \deg r_g < m-k' \\
 \end{aligned}
 \]
 
-By substituting \(f\) and \(g\) into the division formula
+Then substituting them into the division formula
 \[
 \begin{aligned}
 f &= qg + r \\
 (f'-r_{f'}) x^δ + r_f &= q((g'-r_{g'})x^δ + r_{g}) + r \\
 f' x^δ &= q g' x^δ + (r-r_f+qr_g+(r_{f'}-qr_{g'})x^δ) \\
 f' &= q g' + ((r-r_f+qr_g) x^{-δ}+r_{f'}-qr_{g'}) \\
-f' &= q' g' + r' \\
+f' &= q' g' + r'. \\
 \end{aligned}
 \]
 In order to prove that \(q=q'\) we need to prove that \(\deg r' < \deg g' = \deg g\). The degree of the quotient \(q\) is \(\deg q = \deg f - \deg g=δ\). Then the degree of the remainder \(r'\)
@@ -255,7 +248,8 @@ In order to prove that \(q=q'\) we need to prove that \(\deg r' < \deg g' = \deg
 \begin{aligned}
 \deg r' &= \deg ((r-r_f+qr_g) x^{-δ}+r_{f'}-qr_{g'}) \\
 & = \max\{\deg rx^{-δ}, \deg-r_fx^{-δ}, \deg qr_gx^{-δ}, \deg r_{f'}, \deg -qr_{g'}\} \\
-&= \max\{\deg r - δ, \deg r_f - δ, \deg r_g, \deg r_{f'}, δ+\deg r_{g'}\}
+&= \max\{\deg r - δ, \deg r_f - δ, \deg r_g, \deg r_{f'}, δ+\deg r_{g'}\} \\
+&< \deg g=\deg g'
 \end{aligned}
 \]
 
@@ -265,8 +259,15 @@ In order to prove that \(q=q'\) we need to prove that \(\deg r' < \deg g' = \deg
 4) \(\deg r_{f'} < n'-k = (n-δ)-k = m-k < \deg g\)
 5) \(\deg r_{g'} + δ < m'-k'+δ = m'-(k-δ)+δ \\ = m'-k=(m-δ)-k<\deg g\)
 
-Therefore \(\deg r'<\deg g=\deg g'\). ⬜
+Therefore \(\deg r'<\deg g=\deg g'\). \(□\)
+
+---
+
+This answers to the question why the division \(f,g≡_4(\tilde{f}, \tilde{g})\) produce the same quotient for the polynomials in question.
 
 
 ## Problem 4
+The proof made in the problem 3 should atleast partially answer this question.
+
+
 ## References
