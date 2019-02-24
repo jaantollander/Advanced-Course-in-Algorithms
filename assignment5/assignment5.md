@@ -121,13 +121,17 @@ Let a polynomial \(f\) be defined
 \[
 f = f_n x^{n} + f_{n-1} x^{n-1} + ... + f_0 ∈ 𝔽[x]
 \]
-where the leading coefficient \(f_n≠0\).
-
-A **truncated polynomial** is defined
+where the leading coefficient \(f_n≠0\) and \(n=\deg f\) is the degree. A **truncated polynomial** is defined
 \[
 f↾k = f \operatorname{quo} x^{n-k} = f_n x^{k} + f_{n-1} x^{k-1} + ... + f_{n-k},
 \]
-where \(k∈ℤ\)
+where \(k∈ℤ\).
+
+Then a polynomial \(f\) can be written in form
+\[
+f = (f↾k) x^{n-k} + r,
+\]
+where \(r∈𝔽[x]\) and \(\deg r < n-k\) and \(k≤n\).
 
 <!-- \[
 \begin{aligned}
@@ -137,15 +141,132 @@ f↾-∞ &= 0 \\
 \end{aligned}
 \] -->
 
-For all \(i∈ℕ_0\) we have
+<!-- For all \(i∈ℕ_0\) we have
 \[
 (f x^i)↾k=f↾k
+\] -->
+
+---
+
+Let \(f,g,f' ,g'\) be nonzero polynomials in field \(𝔽[x]\) such that \(\deg f ≥ \deg g\) and \(\deg f' ≥ \deg g'\) and which **coincide up to** \(k∈ℕ_0\)
+\[
+(f, g) ≡_k (f', g').
+\]
+Equivalently written
+\[
+\begin{aligned}
+f↾k &= f'↾k, \\
+g↾(k-(\deg f - \deg g)) &= g'↾(k-(\deg f' - \deg g')).
+\end{aligned}
 \]
 
+TODO: ...
 
-**Coinciding polynomials**
+\[
+\begin{aligned}
+f &= qg + r, \deg r < \deg g \\
+f' &= q'g' + r', \deg r' < \deg g' \\
+\end{aligned}
+\]
 
-Quotients
+\[
+q = q'
+\]
+
+---
+
+**Proof**:
+
+
+For simplicity lets denote
+\[
+\begin{aligned}
+\deg f &= n \\
+\deg g &= m \\
+\deg f' &= n' \\
+\deg g' &= m'.
+\end{aligned}
+\]
+
+We have
+\[
+k≥n-m=n'-m'=δ≥0
+\]
+then
+\[
+\begin{aligned}
+f↾k &= f'↾k, \\
+g↾k' &= g'↾k'.
+\end{aligned}
+\]
+where
+\[
+k'=k-(n-m)=k-(n'-m')
+\]
+
+We also have the following indentities
+\[
+n = n'+δ \\
+m = m'+δ \\
+m-k'=n-k
+\]
+
+Writing the polynoamials in terms of their *truncations*
+\[
+\begin{aligned}
+f' &= (f'↾k) x^{n'-k} + r_{f'}, \deg r_{f'} < n'-k \\
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+f &= (f↾k) x^{n-k} + r_f, \deg r_f< n-k \\
+&= (f'↾k) x^{n'-k} x^δ + r_f \\
+&= (f'-r_{f'}) x^δ + r_f
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+g' &= (g'↾k') x^{m'-k'} + r_{g'}, \deg r_{g'} < m'-k'
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+g &= (g↾k') x^{m-k'} + r_g, \deg r_g < m-k' \\
+&= (g'↾k') x^{m'-k'}x^δ + r_g \\
+&= (g'-r_{g'})x^δ + r_{g}
+\end{aligned}
+\]
+
+By substituting \(f\) and \(g\) into the division formula
+\[
+\begin{aligned}
+f &= qg + r \\
+(f'-r_{f'}) x^δ + r_f &= q((g'-r_{g'})x^δ + r_{g}) + r \\
+f' x^δ &= q g' x^δ + (r-r_f+qr_g+(r_{f'}-qr_{g'})x^δ) \\
+f' &= q g' + ((r-r_f+qr_g) x^{-δ}+r_{f'}-qr_{g'}) \\
+f' &= q' g' + r' \\
+\end{aligned}
+\]
+In order to prove that \(q=q'\) we need to prove that \(\deg r' < \deg g' = \deg g\). The degree of the quotient \(q\) is \(\deg q = \deg f - \deg g=δ\). Then the degree of the remainder \(r'\)
+\[
+\begin{aligned}
+\deg r' &= \deg ((r-r_f+qr_g) x^{-δ}+r_{f'}-qr_{g'}) \\
+& = \max\{\deg rx^{-δ}, \deg-r_fx^{-δ}, \deg qr_gx^{-δ}, \deg r_{f'}, \deg -qr_{g'}\} \\
+&= \max\{\deg r - δ, \deg r_f - δ, \deg r_g, \deg r_{f'}, δ+\deg r_{g'}\}
+\end{aligned}
+\]
+
+1) \(\deg r - δ < \deg r < \deg g\)
+2) \(\deg r_f - δ < n - k - δ ≤ m - k < \deg g\)
+3) \(\deg r_g < m-k' = m-k-δ=m-(k+δ) < \deg g\)
+4) \(\deg r_{f'} < n'-k = (n-δ)-k = m-k < \deg g\)
+5) \(\deg r_{g'} + δ < m'-k'+δ = m'-(k-δ)+δ \\ = m'-k=(m-δ)-k<\deg g\)
+
+Therefore \(\deg r'<\deg g=\deg g'\). ⬜
+
 
 ## Problem 4
 ## References
