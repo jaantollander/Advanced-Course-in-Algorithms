@@ -26,6 +26,34 @@ Evaluate the polynomials \(a, b, c\) at uniform random \(ξ∈F\) using the Horn
 
 
 ## Problem 2
+Let \(A,B,C\) be three \(n×n\) matrices with entries in a field \(F.\) Present a randomized algorithm that tests whether \(C=AB\) using \(O(n^2)\) operations in \(F.\) When \(C=AB\), your algorithm must always assert that \(C=AB.\) When \(C≠AB,\) your algorithm must assert that \(C≠AB\) with probability at least \(1/2.\)
+
+---
+
+We have the following equality
+\[
+\begin{aligned}
+C &= AB \\
+Cx &= (AB)x \\
+Cx &= A(Bx)
+\end{aligned}
+\]
+where \(x∈F^n\) is a vector. Using this form of the equality, the equality testing will only require \(O(n^2)\) operations since the product of \(F^{n×n}\) matric and \(F^n\) vector has dimension of \(F^n\) and uses \(O(n^2)\) operations in \(F\) (unlinke naive matrix multiplication, which uses \(O(n^3)\)).
+
+---
+
+By assuming \(C≠AB\) we have \((C-AB)≠\mathbf{0}\). Then what is the probability that
+\[
+(C-AB)x≠0,
+\]
+where \(x∈\{0,1\}^n⊆F^n\) is a binary vector.
+
+- \(2^n\) binary strings
+- \(2^{n^2}\) matrices
+- How many binary vectors \(x\) there are such that \(Cx≠A(Bx)\) when \(C≠AB\)
+- What about \(Cx=A(Cx)\)
+- TODO: the probability that \(Cx≠A(Bx)\) when \(C≠AB\) for some \(x\)
+- TODO: symmetry to prove that probability is \(1/2\)
 
 
 ## Problem 3
