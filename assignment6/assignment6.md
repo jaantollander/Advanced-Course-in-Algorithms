@@ -40,20 +40,42 @@ Cx &= A(Bx)
 \]
 where \(x∈F^n\) is a vector. Using this form of the equality, the equality testing will only require \(O(n^2)\) operations since the product of \(F^{n×n}\) matric and \(F^n\) vector has dimension of \(F^n\) and uses \(O(n^2)\) operations in \(F\) (unlinke naive matrix multiplication, which uses \(O(n^3)\)).
 
----
+By assuming \(C≠AB\) we have nonzero matrix \(D=(C-AB)≠\mathbf{0}.\) Let \(x∈Ω=\{0,1\}^n⊆F^n\) be a binary vector. Then the probability that we choose a uniform random \(x\) such that \(Dx≠0\) is the same as the probability that \(Dx=0\) due to a symmetry.
 
-By assuming \(C≠AB\) we have \((C-AB)≠\mathbf{0}\). Then what is the probability that
+**Proof**: Let the star \(⋆\) represent an element that is either \(0\) or \(1\). Let \(x∈Ω\) be a vector such that \(Dx≠0\). Then \(x\) consists of elements \(1\) and \(⋆\). Then we can construct a vector \(y∈Ω\) such that \(Dy=0\) by substituting all \(1\) with \(0\), but keeping stars \(⋆\) as stars. As an example:
 \[
-(C-AB)x≠0,
+Dx=\left[\begin{matrix}
+ε&0 \\
+0&0
+\end{matrix}\right]
+\left[\begin{matrix}
+1 \\
+⋆
+\end{matrix}\right] ≠ \mathbf{0}
+\text{ then }
+Dy=\left[\begin{matrix}
+ε&0 \\
+0&0
+\end{matrix}\right]
+\left[\begin{matrix}
+0 \\
+⋆
+\end{matrix}\right] = \mathbf{0}
 \]
-where \(x∈\{0,1\}^n⊆F^n\) is a binary vector.
+where \(ε≠0\).
 
-- \(2^n\) binary strings
-- \(2^{n^2}\) matrices
-- How many binary vectors \(x\) there are such that \(Cx≠A(Bx)\) when \(C≠AB\)
-- What about \(Cx=A(Cx)\)
-- TODO: the probability that \(Cx≠A(Bx)\) when \(C≠AB\) for some \(x\)
-- TODO: symmetry to prove that probability is \(1/2\)
+Because there is a vector \(y\) for every vector \(x\) this means that the probabilities are equal
+\[
+P(Dx=0)=P(Dx≠0).
+\]
+Also, probability theory gives us
+\[
+P(Dx=0)+P(Dx≠0)=1.
+\]
+Therefore the probability
+\[
+P(Dx≠0) = \frac{1}{2}.
+\]
 
 
 ## Problem 3
