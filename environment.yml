@@ -1,0 +1,7 @@
+name: aca36
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6
+  - jupyter
+  - sympy
