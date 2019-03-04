@@ -100,15 +100,13 @@ The shares can be created the following way:
 4) Let \(X_k=[f_{i,j}(ξ_k))]\) and \(Y_k=[g_{i,j}(ξ_k))]\) for \(k=1,2,3\).
 5) The shares are \((ξ_1, X_1, Y_1)\), \((ξ_2, X_2, Y_2)\), and \((ξ_3, X_3, Y_3)\).
 
-TODO: operations complexity
+Each polynomial evaluation has two operations in \(F\) and they are evaluated in total \(2 n^2\) times therefore there are \(2⋅2n^2=O(n^2)\) operations in \(F\).
 
-There shares are now handed to the friends who perform the matrix multiplications \(Z_1=X_1Y_1\), \(Z_2=X_2Y_2,\) and \(Z_3=X_3Y_3,\) and then send the results \((ξ_1, Z_1,)\) \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\) back. This part is counts as zero operations because the computation is done by the friends.
+These shares are now handed to the friends who perform the matrix multiplications \(Z_1=[z_{i,j,1}]=X_1Y_1\), \(Z_2=[z_{i,j,2}]=X_2Y_2,\) and \(Z_3=[z_{i,j,3}]=X_3Y_3,\) and then send the results \((ξ_1, Z_1,)\) \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\) back. This part is counts as zero operations because the computation is done by the friends.
 
-Using interpolation on points \((ξ_1,z_{i,j, 1}), (ξ_2, z_{i,j, 2}), (ξ_3, z_{i,j, 3})\) in order to obtain polynomial \(h_{i,j}\) and then evaluate it at zero to recover the entries of \(h_{i,j}(0)=z_{i,j}\) of the product \(Z=[z_{i,j}]\).
+The polynomial \(h_{i,j}\) is obtained by using interpolation on the points \((ξ_1,z_{i,j, 1}), (ξ_2, z_{i,j, 2}), (ξ_3, z_{i,j, 3})\) and then evaluating the polynomial at zero to recover the entries \(h_{i,j}(0)=z_{i,j}\) of the product \(Z=[z_{i,j}]\).
 
-TODO: operations complexity
-
-**Proof**:
+**Proof**: \(h_{i,j}(0)\) recovers the matrix multiplication
 \[
 \begin{aligned}
 h_{i,j}(0)&=∑_{r=1}^{n} f_{i,r}(0) g_{r,j}(0) \\
@@ -116,6 +114,10 @@ h_{i,j}(0)&=∑_{r=1}^{n} f_{i,r}(0) g_{r,j}(0) \\
 &= z_{i,j}
 \end{aligned}
 \]
+
+The interpolation takes constant amount of operations in \(F\) and its done \(n^2\) times therefore the total amount of operations is \(O(n^2).\) Therefore the total amount of operations for the whole algorithm is \(O(n^2).\)
+
+
 
 
 ## References
