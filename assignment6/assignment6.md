@@ -84,25 +84,32 @@ Suppose you have two \(x×x\) matrices, \(X\) and \(Y\), with entries in a finit
 
 ---
 
-Shamir's secret sharing
+Evaluation interpolation duality and secret sharing [@modern_computer_algebra, chapters 5.1 - 5.3]
 
 - TODO: similarly to the Fast Fourier Transformation, polynomial operations can be done in the evaluation representation as longs as we have enought evaluation points to reconstruct the result
-- TODO: polynomial degree \(n\) -> \(2n+1\) (multiplication), number of shares
-
-Let the matrices \(X\) and \(Y\) be our secrets which will be split into \(s=3\) shares.
-
-Lets denote the matrix product \(Z=XY\)
+- TODO: correctness
+- TODO: runtime analysis
 
 ---
 
-In individual share of a matrix \(X=[φ_{ij, 0}]\) is created ...
+Lets denote the entries of matrix \(X=[x_{ij}]\) and \(Y=[y_{ij}]\) and their product \(XY=Z=[z_{ij}]\).
+
+- TODO: \(i=1,2,...,n\) and \(j=1,2,...,n\) denote the indices of the \(n×n\) matrices
+
+---
+
+Our secret matrices \(X=[φ_{ij,0}]\) and \(Y=[ρ_{ij,0}]\) are need to be split into \(s=3\) shares.
+
+TODO: number of shares needed to reconstruct our secres is set \(k=2\), therefore no-one does individually gain any information about the matrices
+
+The reason we need \(3\) shares is because the matrix product does multiplication on two degree \(1\) polynomials and therefore the resulting polynomial is of degree \(2\) and we need \(2⋅1+1=3\) points to interpolate it.
+
+We'll create the shares as follows:
 
 2) Let \(ξ_1,ξ_2,ξ_3∈F\) be distinct and nonzero.
-3) Select elements \(φ_{ij,1}∈F\) independently and uniformly at random.
-4) Let the polynomial \(f_{ij}(x) = φ_{ij, 0} + φ_{ij, 1} x ∈ F[x]\)
-5) Let \(X_k=[f_{ij}(ξ_k))]\) then the shares are \((ξ_1, X_1)\), \((ξ_2, X_2)\), and \((ξ_3, X_3)\).
-
-TODO: create the shares \((ξ_1, Y_1)\), \((ξ_2, Y_2)\), and \((ξ_3, Y_3)\) for the matrix \(Y\) at same evaluation points
+3) Select elements \(φ_{ij,1}, ρ_{ij,1}∈F\) independently and uniformly at random.
+4) Let the polynomials \(f_{ij}(x) = φ_{ij, 0} + φ_{ij, 1} x ∈ F[x]\) and \(g_{ij}(x) = ρ_{ij, 0} + ρ_{ij, 1} x ∈ F[x]\).
+5) Let \(X_k=[f_{ij}(ξ_k))]\) and \(Y_k=[g_{ij}(ξ_k))]\) for \(k=1,2,3\) then the shares are \((ξ_1, X_1, Y_1)\), \((ξ_2, X_2, Y_2)\), and \((ξ_3, X_3, Y_3)\).
 
 ---
 
