@@ -80,4 +80,39 @@ P(Dx≠0) = \frac{1}{2}.
 
 ## Problem 3
 ## Problem 4
+Suppose you have two \(x×x\) matrices, \(X\) and \(Y\), with entries in a finite field \(F\) with atleast four elements. You want to delegate the task of computing the product matric \(XY\) to your three friends Alice, Bob and Charlie so that none of your three friends individually gains any information about the matrices \(X\) and \(Y\) other than the size parameter \(n\). Describe a protocol that employs Alice, Bob, and Charlie to help you so that you obtain the product matrix \(XY\) without you yourself putting in more work than \(O(n^2)\) operations in \(F\). You can assume you have a subroutine that returns independent uniform random elements of \(F\).
+
+---
+
+Shamir's secret sharing
+
+- TODO: similarly to the Fast Fourier Transformation, polynomial operations can be done in the evaluation representation as longs as we have enought evaluation points to reconstruct the result
+- TODO: polynomial degree \(n\) -> \(2n+1\) (multiplication), number of shares
+
+Let the matrices \(X\) and \(Y\) be our secrets which will be split into \(s=3\) shares.
+
+Lets denote the matrix product \(Z=XY\)
+
+---
+
+In individual share of a matrix \(X=[φ_{ij, 0}]\) is created ...
+
+2) Let \(ξ_1,ξ_2,ξ_3∈F\) be distinct and nonzero.
+3) Select elements \(φ_{ij,1}∈F\) independently and uniformly at random.
+4) Let the polynomial \(f_{ij}(x) = φ_{ij, 0} + φ_{ij, 1} x ∈ F[x]\)
+5) Let \(X_k=[f_{ij}(ξ_k))]\) then the shares are \((ξ_1, X_1)\), \((ξ_2, X_2)\), and \((ξ_3, X_3)\).
+
+TODO: create the shares \((ξ_1, Y_1)\), \((ξ_2, Y_2)\), and \((ξ_3, Y_3)\) for the matrix \(Y\) at same evaluation points
+
+---
+
+Let the matrix products \(Z_1=X_1Y_1\), \(Z_2=X_2Y_2\), and \(Z_3=X_3Y_3\).
+
+Receive the matrix products \((ξ_1, Z_1)\), \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\)
+
+---
+
+Interpolate the polynomial \(g\) to points \(z_{ij, 1}, z_{ij, 2}, z_{ij, 3}\) and evaluate it at zero to obtain the entries of \(z_{ij}\) of \(Z\).
+
+
 ## References
