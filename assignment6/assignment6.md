@@ -84,42 +84,38 @@ Suppose you have two \(x×x\) matrices, \(X\) and \(Y\), with entries in a finit
 
 ---
 
-Evaluation interpolation duality and secret sharing [@modern_computer_algebra, chapters 5.1 - 5.3]
+Delegated matrix multiplication can be constructed using evaluation interpolation duality and secret sharing [@modern_computer_algebra, chapters 5.1 - 5.3].
 
-- TODO: similarly to the Fast Fourier Transformation, polynomial operations can be done in the evaluation representation as longs as we have enought evaluation points to reconstruct the result
-- TODO: correctness
-- TODO: runtime analysis
+Lets denote the entries of matrix \(X=[x_{i,j}]\) and \(Y=[y_{i,j}]\) and their product \(XY=Z=[z_{i,j}]\) where \(i=1,2,...,n\) and \(j=1,2,...,n\) denote the indices of the \(n×n\) matrices.
 
----
+Let the matrices \(X\) and \(Y\) be the secrets. The number of shares needed to recover the secret is set to be \(k=2\) such that no one can individually gain any information about the secrets. A consequence of this is that the polynomials \(f\) and \(g\) used for constructing the secrets will have a degree of \(\deg f = \deg g = k-1=1.\)
 
-Lets denote the entries of matrix \(X=[x_{ij}]\) and \(Y=[y_{ij}]\) and their product \(XY=Z=[z_{ij}]\).
+Each secret is split into \(s=3\) shares because the matrix product does multiplication on the polynomial used for constructing the secrets and therefore the resulting polynomial is of degree \(\deg fg = \deg f + \deg g = 1+1=2\) and it requires \(\deg fg + 1=3\) points to recover it using interpolation.
 
-- TODO: \(i=1,2,...,n\) and \(j=1,2,...,n\) denote the indices of the \(n×n\) matrices
+The shares can be created the following way:
 
----
+1) Let \(ξ_1,ξ_2,ξ_3∈F\) be distinct and nonzero.
+2) Select elements \(φ_{i,j}, ρ_{i,j}∈F\) independently and uniformly at random.
+3) Let the polynomials \(f_{i,j}(x) = x_{i,j} + φ_{i,j} x ∈ F[x]\) and \(g_{i,j}(x) = y_{i,j} + ρ_{i,j} x ∈ F[x]\).
+4) Let \(X_k=[f_{i,j}(ξ_k))]\) and \(Y_k=[g_{i,j}(ξ_k))]\) for \(k=1,2,3\).
+5) The shares are \((ξ_1, X_1, Y_1)\), \((ξ_2, X_2, Y_2)\), and \((ξ_3, X_3, Y_3)\).
 
-Our secret matrices \(X=[φ_{ij,0}]\) and \(Y=[ρ_{ij,0}]\) are need to be split into \(s=3\) shares.
+TODO: operations complexity
 
-TODO: number of shares needed to reconstruct our secres is set \(k=2\), therefore no-one does individually gain any information about the matrices
+There shares are now handed to the friends who perform the matrix multiplications \(Z_1=X_1Y_1\), \(Z_2=X_2Y_2,\) and \(Z_3=X_3Y_3,\) and then send the results \((ξ_1, Z_1,)\) \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\) back. This part is counts as zero operations because the computation is done by the friends.
 
-The reason we need \(3\) shares is because the matrix product does multiplication on two degree \(1\) polynomials and therefore the resulting polynomial is of degree \(2\) and we need \(2⋅1+1=3\) points to interpolate it.
+Using interpolation on points \((ξ_1,z_{i,j, 1}), (ξ_2, z_{i,j, 2}), (ξ_3, z_{i,j, 3})\) in order to obtain polynomial \(h_{i,j}\) and then evaluate it at zero to recover the entries of \(h_{i,j}(0)=z_{i,j}\) of the product \(Z=[z_{i,j}]\).
 
-We'll create the shares as follows:
+TODO: operations complexity
 
-2) Let \(ξ_1,ξ_2,ξ_3∈F\) be distinct and nonzero.
-3) Select elements \(φ_{ij,1}, ρ_{ij,1}∈F\) independently and uniformly at random.
-4) Let the polynomials \(f_{ij}(x) = φ_{ij, 0} + φ_{ij, 1} x ∈ F[x]\) and \(g_{ij}(x) = ρ_{ij, 0} + ρ_{ij, 1} x ∈ F[x]\).
-5) Let \(X_k=[f_{ij}(ξ_k))]\) and \(Y_k=[g_{ij}(ξ_k))]\) for \(k=1,2,3\) then the shares are \((ξ_1, X_1, Y_1)\), \((ξ_2, X_2, Y_2)\), and \((ξ_3, X_3, Y_3)\).
-
----
-
-Let the matrix products \(Z_1=X_1Y_1\), \(Z_2=X_2Y_2\), and \(Z_3=X_3Y_3\).
-
-Receive the matrix products \((ξ_1, Z_1)\), \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\)
-
----
-
-Interpolate the polynomial \(g\) to points \(z_{ij, 1}, z_{ij, 2}, z_{ij, 3}\) and evaluate it at zero to obtain the entries of \(z_{ij}\) of \(Z\).
+**Proof**:
+\[
+\begin{aligned}
+h_{i,j}(0)&=∑_{r=1}^{n} f_{i,r}(0) g_{r,j}(0) \\
+&= ∑_{r=1}^n x_{i,r} y_{r,j} \\
+&= z_{i,j}
+\end{aligned}
+\]
 
 
 ## References
