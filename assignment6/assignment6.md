@@ -20,7 +20,7 @@ Let \(a,b,c∈F[x]\) be three polynomials, each of degree at most \(d\) and each
 
 ---
 
-The probability is quaranteed by results from (a).
+The probability is guaranteed by results from (a).
 
 Evaluate the polynomials \(a, b, c\) at uniform random \(ξ∈F\) using the Horner's rule. Horner's rule uses \(O(d)\) operations in \(F\) and assumes constant \(O(1)\) complexity for addition and multiplication in \(F\). Then compute \(b(ξ)c(ξ)\) and do the comparison \(a(ξ)=b(ξ)c(ξ)\) which reduces to addition \(a(ξ)-b(ξ)c(ξ)=0\). Therefore the total number of operations required in for the test is \(O(d)+O(1)+(1)=O(d)\).
 
@@ -40,7 +40,7 @@ Cx &= A(Bx)
 \]
 where \(x∈F^n\) is a vector. Using this form of the equality, the equality testing will only require \(O(n^2)\) operations since the product of \(F^{n×n}\) matric and \(F^n\) vector has dimension of \(F^n\) and uses \(O(n^2)\) operations in \(F\) (unlinke naive matrix multiplication, which uses \(O(n^3)\)).
 
-By assuming \(C≠AB\) we have nonzero matrix \(D=(C-AB)≠\mathbf{0}.\) Let \(x∈Ω=\{0,1\}^n⊆F^n\) be a binary vector. Then the probability that we choose a uniform random \(x\) such that \(Dx≠0\) is the same as the probability that \(Dx=0\) due to a symmetry.
+By assuming \(C≠AB\) we have nonzero matrix \(D=(C-AB)≠\mathbf{0}.\) Let \(x∈Ω=\{0,1\}^n⊆F^n\) be a binary vector. Then the probability that we choose a uniform random \(x\) such that \(Dx≠0\) is the same as the probability that \(Dx=0\) due to symmetry.
 
 **Proof**: Let the star \(⋆\) represent an element that is either \(0\) or \(1\). Let \(x∈Ω\) be a vector such that \(Dx≠0\). Then \(x\) consists of elements \(1\) and \(⋆\). Then we can construct a vector \(y∈Ω\) such that \(Dy=0\) by substituting all \(1\) with \(0\), but keeping stars \(⋆\) as stars. As an example:
 \[
@@ -80,7 +80,7 @@ P(Dx≠0) = \frac{1}{2}.
 
 ## Problem 3
 ## Problem 4
-Suppose you have two \(x×x\) matrices, \(X\) and \(Y\), with entries in a finite field \(F\) with atleast four elements. You want to delegate the task of computing the product matric \(XY\) to your three friends Alice, Bob and Charlie so that none of your three friends individually gains any information about the matrices \(X\) and \(Y\) other than the size parameter \(n\). Describe a protocol that employs Alice, Bob, and Charlie to help you so that you obtain the product matrix \(XY\) without you yourself putting in more work than \(O(n^2)\) operations in \(F\). You can assume you have a subroutine that returns independent uniform random elements of \(F\).
+Suppose you have two \(x×x\) matrices, \(X\) and \(Y\), with entries in a finite field \(F\) with at least four elements. You want to delegate the task of computing the product matric \(XY\) to your three friends Alice, Bob and Charlie so that none of your three friends individually gains any information about the matrices \(X\) and \(Y\) other than the size parameter \(n\). Describe a protocol that employs Alice, Bob, and Charlie to help you so that you obtain the product matrix \(XY\) without you yourself putting in more work than \(O(n^2)\) operations in \(F\). You can assume you have a subroutine that returns independent uniform random elements of \(F\).
 
 ---
 
@@ -100,7 +100,7 @@ The shares can be created the following way:
 4) Let \(X_k=[f_{i,j}(ξ_k))]\) and \(Y_k=[g_{i,j}(ξ_k))]\) for \(k=1,2,3\).
 5) The shares are \((ξ_1, X_1, Y_1)\), \((ξ_2, X_2, Y_2)\), and \((ξ_3, X_3, Y_3)\).
 
-Each polynomial evaluation has two operations in \(F\) and they are evaluated in total \(2 n^2\) times therefore there are \(2⋅2n^2=O(n^2)\) operations in \(F\).
+Each polynomial evaluation has two operations in \(F\) and they are evaluated in total \(2 n^2\) times, therefore, there are \(2⋅2n^2=O(n^2)\) operations in \(F\).
 
 These shares are now handed to the friends who perform the matrix multiplications \(Z_1=[z_{i,j,1}]=X_1Y_1\), \(Z_2=[z_{i,j,2}]=X_2Y_2,\) and \(Z_3=[z_{i,j,3}]=X_3Y_3,\) and then send the results \((ξ_1, Z_1,)\) \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\) back. This part is counts as zero operations because the computation is done by the friends.
 
@@ -115,9 +115,7 @@ h_{i,j}(0)&=∑_{r=1}^{n} f_{i,r}(0) g_{r,j}(0) \\
 \end{aligned}
 \]
 
-The interpolation takes constant amount of operations in \(F\) and its done \(n^2\) times therefore the total amount of operations is \(O(n^2).\) Therefore the total amount of operations for the whole algorithm is \(O(n^2).\)
-
-
+The interpolation takes a constant amount of operations in \(F\) and its done \(n^2\) times, therefore, the total amount of operations is \(O(n^2).\) Therefore the total amount of operations for the whole algorithm is \(O(n^2).\)
 
 
 ## References
