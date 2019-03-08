@@ -90,19 +90,19 @@ Lets denote the entries of matrix \(X=[x_{i,j}]\) and \(Y=[y_{i,j}]\) and their 
 
 Let the matrices \(X\) and \(Y\) be the secrets. The number of shares needed to recover the secret is set to be \(k=2\) such that no one can individually gain any information about the secrets. A consequence of this is that the polynomials \(f\) and \(g\) used for constructing the secrets will have a degree of \(\deg f = \deg g = k-1=1.\)
 
-Each secret is split into \(s=3\) shares because the matrix product does multiplication on the polynomial used for constructing the secrets and therefore the resulting polynomial is of degree \(\deg fg = \deg f + \deg g = 1+1=2\) and it requires \(\deg fg + 1=3\) points to recover it using interpolation.
+Each secret is split into \(s=3\) shares. This is because the matrix product does multiplication on the polynomials used for constructing the secrets and therefore the resulting polynomial is of degree \(\deg fg = \deg f + \deg g = 1+1=2\) which requires \(\deg fg + 1=3\) points in order to recover it using interpolation.
 
 The shares can be created the following way:
 
 1) Let \(ξ_1,ξ_2,ξ_3∈F\) be distinct and nonzero.
 2) Select elements \(φ_{i,j}, ρ_{i,j}∈F\) independently and uniformly at random.
-3) Let the polynomials \(f_{i,j}(x) = x_{i,j} + φ_{i,j} x ∈ F[x]\) and \(g_{i,j}(x) = y_{i,j} + ρ_{i,j} x ∈ F[x]\).
+3) Let \(f_{i,j}(x) = x_{i,j} + φ_{i,j} x ∈ F[x]\) and \(g_{i,j}(x) = y_{i,j} + ρ_{i,j} x ∈ F[x]\).
 4) Let \(X_k=[f_{i,j}(ξ_k))]\) and \(Y_k=[g_{i,j}(ξ_k))]\) for \(k=1,2,3\).
 5) The shares are \((ξ_1, X_1, Y_1)\), \((ξ_2, X_2, Y_2)\), and \((ξ_3, X_3, Y_3)\).
 
 Each polynomial evaluation has two operations in \(F\) and they are evaluated in total \(2 n^2\) times, therefore, there are \(2⋅2n^2=O(n^2)\) operations in \(F\).
 
-These shares are now handed to the friends who perform the matrix multiplications \(Z_1=[z_{i,j,1}]=X_1Y_1\), \(Z_2=[z_{i,j,2}]=X_2Y_2,\) and \(Z_3=[z_{i,j,3}]=X_3Y_3,\) and then send the results \((ξ_1, Z_1,)\) \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\) back. This part is counts as zero operations because the computation is done by the friends.
+These shares are now handed to the friends who perform the matrix multiplications \(Z_1=[z_{i,j,1}]=X_1Y_1\), \(Z_2=[z_{i,j,2}]=X_2Y_2,\) and \(Z_3=[z_{i,j,3}]=X_3Y_3,\) and then send the results \((ξ_1, Z_1,)\) \((ξ_2, Z_2)\) and \((ξ_3, Z_3)\) back. This part counts as zero operations because the computation is done by the friends.
 
 The polynomial \(h_{i,j}\) is obtained by using interpolation on the points \((ξ_1,z_{i,j, 1}), (ξ_2, z_{i,j, 2}), (ξ_3, z_{i,j, 3})\) and then evaluating the polynomial at zero to recover the entries \(h_{i,j}(0)=z_{i,j}\) of the product \(Z=[z_{i,j}]\).
 
