@@ -24,12 +24,12 @@ Let \(\tilde{f}\) be a reducible monic polynomial of degree \(2\) in \(ℤ_3[x]\
 \]
 where \(a,b∈ℤ_3\) and \(g,h∈ℤ_3[x]\) and \(g,h∉ℤ_3.\) Then the set of all coefficient pairs which form a reducible monic polynomial of degree \(2\) is \[S'=\{(a⋅b, a+b)∣a,b∈ℤ_3\}.\]
 
-Therefore all coefficients pairs which form monic irreducible polynomial of degree \(2\) are given by the set difference
+Therefore all coefficients pairs which form monic irreducible polynomials of degree \(2\) are given by the set difference
 \[
 S∖S' = \left\{\left ( 1, \quad 0\right ), \left ( 2, \quad 1\right ), \left ( 2, \quad 2\right )\right\}.
 \]
 
-For example, \(f=1+x^2\) is a monic irreducible polynomial in \(ℤ_3[x].\)
+For example, \(f=1+x^2\) is a monic irreducible polynomial of degree \(2\) in \(ℤ_3[x].\)
 
 
 ### (b)
