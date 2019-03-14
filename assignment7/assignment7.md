@@ -69,6 +69,18 @@ Using your solution to Problem 1, find for each nonzero element of \(𝔽_9\) it
 
 ---
 
+The order of a nonzero element \(a∈𝔽_q∖\{0\}\) is the least positive integer \(k\) such that \(a^k=1.\)
+
+For the elements \(𝔽_9\) we have
+\[
+\begin{aligned}
+1^1 &= 1 \\
+2^2 &= 1 \\
+x^4 &= (2x)^4 = 1 \\
+(x+1)^8 &= (x+2)^8 = (2x+1)^8 = (2x+2)^8 = 1.
+\end{aligned}
+\]
+
 
 ## Problem 3
 ## Problem 4
