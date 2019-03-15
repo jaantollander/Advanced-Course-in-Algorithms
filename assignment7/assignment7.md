@@ -80,8 +80,65 @@ x^4 &= (2x)^4 = 1 \\
 (x+1)^8 &= (x+2)^8 = (2x+1)^8 = (2x+2)^8 = 1.
 \end{aligned}
 \]
+Element \(1\) has order of \(1\), element \(2\) has order of \(2\), elements \(x, 2x\) have order of \(4\) and elements \(x+1, x+2, 2x+1, 2x+2\) have order of \(8.\)
 
 
 ## Problem 3
+Let \(R\) be a commutative ring with \(0_R≠1_R.\) for a polynomial \(f=∑_{i=0}^d φ_i x^i ∈ R[x],\) define the *formal derivative* \(f'∈R[x]\) of \(f\) by \[f'=∑_{i=0}^d i_R φ_i x^{i-1},\] where \(i_R=1_R+1_R+...+1_R\) obtained by taking the sum of \(i\) copies of the multiplicative identity \(1_R\) of \(R.\)
+
+Show that the formal derivative satisfies each of the following properties:
+
+(a) \('\) is \(R\)-linear,
+(b) \('\) satisfies the Leibniz (product) rule \((fg)'=f'g+fg',\) and
+(c) \('\) satisfies the chain rule \(f(g)'=f'(g)g'.\)
+
+---
+
+Let \(f\) and \(g\) be polynomials in \(R[x].\)
+
+### (a)
+Let the linear combination of polynomials \(f\) and \(g\) be
+\[
+\begin{aligned}
+αf+βg &= α ∑_{i=0}^d φ_i x^i + β ∑_{i=0}^d ρ_i x^i \\
+&= ∑_{i=0}^d (α φ_i + β ρ_i) x^i
+\end{aligned}
+\]
+where \(α,β∈R\) and \(d=\deg (αf+βg)=\max\{\deg f,\deg g\}.\)
+
+Then the formal derivative is \(R\)-linear
+\[
+\begin{aligned}
+(αf+βg)' &= ∑_{i=0}^d i_R (α φ_i + β ρ_i) x^{i-1} \\
+&= α ∑_{i=0}^d i_R φ_i x^{i-1} + β ∑_{i=0}^d i_R ρ_i x^{i-1} \\
+&= αf'+βg'.
+\end{aligned}
+\]
+
+### (b)
+TODO: linearity
+\[
+\begin{aligned}
+(fg)' &= (x^n x^m)' \\
+&= (x^{n+m})' \\
+&= (n+m)x^{n+m-1} \\
+&= n x^{n-1} x^m + x^n m x^{m-1} \\
+&= f'g + fg'
+\end{aligned}
+\]
+
+### (c)
+\[
+\begin{aligned}
+(f(g))'&= ((x^m)^n)' \\
+&= (x^{mn})' \\
+&= mn x^{mn-1} \\
+&= mn x^{m(n-1)+m-1} \\
+&= n (x^m)^{n-1} m x^{m-1} \\
+&= f'(g)g'
+\end{aligned}
+\]
+
+
 ## Problem 4
 ## References
