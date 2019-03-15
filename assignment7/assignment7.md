@@ -116,26 +116,43 @@ Then the formal derivative is \(R\)-linear
 \]
 
 ### (b)
-TODO: linearity
+The multiplication of the polynomials \(f\) and \(g\) can be written
 \[
-\begin{aligned}
-(fg)' &= (x^n x^m)' \\
-&= (x^{n+m})' \\
-&= (n+m)x^{n+m-1} \\
-&= n x^{n-1} x^m + x^n m x^{m-1} \\
-&= f'g + fg'
-\end{aligned}
+fg = ∑_{n}∑_{m} φ_n ρ_m x^n x^m
 \]
 
+Using linear we have
+\[
+\begin{aligned}
+(fg)' &= \Big(∑_{n}∑_{m} φ_n ρ_m x^n x^m\Big)' \\
+&= ∑_{n}∑_{m} φ_n ρ_m (x^n x^m)'.
+\end{aligned}
+\]
+where
+\[
+\begin{aligned}
+(x^n x^m)' &= (x^{n+m})' \\
+&= (n+m)x^{n+m-1} \\
+&= (n x^{n-1} x^m) + (x^n m x^{m-1}) \\
+&= (x^{n})' x^m + x^n (x^{m})'. \\
+\end{aligned}
+\]
+Now we can form the product rule
+\[
+(fg)' = f'g + fg'.
+\]
+
+
 ### (c)
+Using linearity we need to only prove the case where \(f=x^n\) and \(g=x^m\)
 \[
 \begin{aligned}
 (f(g))'&= ((x^m)^n)' \\
 &= (x^{mn})' \\
 &= mn x^{mn-1} \\
-&= mn x^{m(n-1)+m-1} \\
-&= n (x^m)^{n-1} m x^{m-1} \\
-&= f'(g)g'
+&= mn x^{m(n-1)+(m-1)} \\
+&= (n (x^m)^{n-1}) (m x^{m-1}) \\
+&= f'(g)g'.
 \end{aligned}
 \]
 
