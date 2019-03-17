@@ -65,7 +65,7 @@ x ⋅ 2x &= 1 \\
 
 
 ## Problem 2
-Using your solution to Problem 1, find for each nonzero element of \(𝔽_9\) its multiplicative order.
+Using your solution to Problem 1, find for each nonzero element of \(𝔽_9\) it's multiplicative order.
 
 ---
 
@@ -94,7 +94,7 @@ Show that the formal derivative satisfies each of the following properties:
 
 ---
 
-Let \(f\) and \(g\) be polynomials in \(R[x].\)
+Let \(f\) and \(g\) be polynomials in \(R[x].\) Let \(\deg f=d_1\) and \(\deg g=d_2\) be their degrees.
 
 ### (a)
 Let the linear combination of polynomials \(f\) and \(g\) be
@@ -118,14 +118,14 @@ Then the formal derivative is \(R\)-linear
 ### (b)
 The multiplication of the polynomials \(f\) and \(g\) can be written
 \[
-fg = ∑_{n}∑_{m} φ_n ρ_m x^n x^m
+fg = ∑_{n=0}^{d_1}∑_{m=0}^{d_2} φ_n ρ_m x^n x^m
 \]
 
 Using linear we have
 \[
 \begin{aligned}
-(fg)' &= \Big(∑_{n}∑_{m} φ_n ρ_m x^n x^m\Big)' \\
-&= ∑_{n}∑_{m} φ_n ρ_m (x^n x^m)'.
+(fg)' &= \Big(∑_{n=0}^{d_1}∑_{m=0}^{d_2} φ_n ρ_m x^n x^m\Big)' \\
+&= ∑_{n=0}^{d_1}∑_{m=0}^{d_2} φ_n ρ_m (x^n x^m)'.
 \end{aligned}
 \]
 where
@@ -144,6 +144,17 @@ Now we can form the product rule
 
 
 ### (c)
+<!-- \[
+f(g) = ∑_{n=0}^{d_1} φ_n \left(∑_{m=0}^{d_2} ρ_m x^m\right)^n
+\]
+
+TODO: multinomial theorem
+\[
+\left(∑_{m=0}^{d_2} ρ_m x^m\right)^n = ∑_{k=0}^{d_2n} \tilde{ρ}_{k} x^{k}
+\]
+
+... -->
+
 Using linearity we need to only prove the case where \(f=x^n\) and \(g=x^m\)
 \[
 \begin{aligned}
