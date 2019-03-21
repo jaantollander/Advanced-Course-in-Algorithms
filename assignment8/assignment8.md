@@ -62,29 +62,47 @@ f^{2^n} &= (f^{2^{n-1}} ⋅ f^{2^{n-1}}) \operatorname{rem} g, n∈ℕ.
 \end{aligned}
 \]
 
-The full algorithm ...
+The full algorithm for square-and-multiply modular exponentiation using the ideas above gives:
 
-* **Input** \(f\) \(m\) \(g\)
-* **Output**
+* **Input**: Let \(q\) be a prime power, the inputs are \(m∈ℤ_{≥1}\), \( f∈𝔽_q[x],\) and \(g∈𝔽_q[x]∖\{0\}\) with \(\deg f, \deg g≤d∈ℤ_{≥1}.\)
+* **Output**: The polynomial \(h=f^m \operatorname{rem} g∈𝔽_q[x].\)
 
 \(\operatorname{Square-and-Multiply-Modular-Exponentiation}(f, m, g)\)
 
-1) Decompose \(m\) into \(n_1, n_2, ..., n_k\)
+1) Compute \(N=\{n_1, n_2, ..., n_k\}\) from the decomposition of \(m\)
 2) \(h=0\)
 3) \(\tilde{f}=f^1\)
 4) **for** \(n = 1,2,...,n_k\)
-5) ..... **if** \(n ∈ n_i\)
+5) ..... **if** \(n ∈ N\)
 6) ..... ..... \(h = h + \tilde{f}\)
 7) ..... \(\tilde{f}=(\tilde{f}⋅\tilde{f}) \operatorname{rem} g\)
 8) **return** \(h\)
 
-Analysis
+**Analysis**: There are \(\log m\) iterations in the for-loop. Inside the for-loop, there are the following operations
 
-- Addition \(O(d)\)
-- Multiply \(O(d \log d)\)
-- Fast remainder \(O(...)\)
+- Maximum of one polynomial addition. (Horner's rule \(O(d).\))
+- One polynomial multiplication.  (Fast polynomial multiplication \(O(M(d)).\))
+- One polynomial remainder. (Fast polynomial remaindering \(O(M(d)).\))
+
+TODO: verify the complexity of the operations
+
+Total number of operations in \(𝔽_q[x]\) is
+\[
+O(M(d) \log m).
+\]
 
 
 ## Problem 3
+Formal derivative of a factorization. Let \(q\) be a prime power. Let \(f∈𝔽_q[x]\) be monic with factorization \(f=f_1^{d_1}f_2^{d_2}⋯f_r^{d_r}\) into distinct irreducible polynomials \(f_1,f_2,...,f_r∈𝔽_q[x]\) and \(d_1,d_2,...,d_r∈ℤ_{≥1}.\) Show that the formal derivative of \(f\) satisfies
+\[
+f' = d_1 f_1' \frac{f}{f_1} + d_2 f_2' \frac{f}{f_2} + ... + d_r f_r' \frac{f}{f_r}∈𝔽_q[x].
+\]
+Above we write \(d_j\) for a sum of \(d_j\) copies of the multiplicative identity of \(𝔽_q.\)
+
+---
+
+
+
+
 ## Problem 4
 ## References
