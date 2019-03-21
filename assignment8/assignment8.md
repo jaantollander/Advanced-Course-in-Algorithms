@@ -101,7 +101,37 @@ Above we write \(d_j\) for a sum of \(d_j\) copies of the multiplicative identit
 
 ---
 
+Product rule
+\[
+(fg)'=f'g + fg'
+\]
 
+Chain rule
+\[
+(f(g))'=f'(g)g'
+\]
+
+Generalizing the product rule gives
+\[
+\left(∏_{i=1}^r f_i\right)' = ∑_{i=1}^r f_i' \frac{f}{f_i}
+\]
+
+Using chain rule
+\[
+(f^d)'=d f^{d-1} f', d∈ℤ_{≥1}
+\]
+
+Therefore the formal derivative satisfies
+\[
+\begin{aligned}
+f' &= (f_1^{d_1}f_2^{d_2}⋯f_r^{d_r})' \\
+&= \left(∏_{i=1}^r f_i^{d_i}\right)' \\
+&= ∑_{i=1}^r \left(f_i^{d_r}\right)' \frac{f}{f_i^{d_r}} \\
+&= ∑_{i=1}^r d_r f_i^{d_r-1} f_i' \frac{f}{f_i^{d_r}} \\
+&= ∑_{i=1}^r d_r f_i' \frac{f}{f_i} \\
+&= d_1 f_1' \frac{f}{f_1} + d_2 f_2' \frac{f}{f_2} + ... + d_r f_r' \frac{f}{f_r}.
+\end{aligned}
+\]
 
 
 ## Problem 4
