@@ -41,20 +41,10 @@ m = 2^{n_1} + 2^{n_2} + ... + 2^{n_k}
 \]
 such that \(\log m ≥ n_1 > n_2 > ... > n_k ≥ 0\) and \(k∈ℕ.\) The decomposition can be computed with \(\log m\) successive divisions by \(2\).
 
-<!-- TODO: digits of \(m\) as a binary number? -->
-
-<!-- The upper bound for \(k\) as a function of \(m\), i.e. the upper bound for the number of additions, is the case where
-\[
-m = 2^1 + 2^2 + ... + 2^k < 2^{k+1}.
-\]
-Which gives
-\[
-k < \log m - 1 < \log m.
-\] -->
-
-The powers of two of the polynomial \(f\) can be computed recursively upto power \(2^n\) starting with \(f^1=f\) by
+The powers of two of the polynomial \(f\) can be computed recursively upto power \(2^n\)
 \[
 \begin{aligned}
+f^1 &= f \\
 f^2 &= (f^1 ⋅ f^1) \operatorname{rem} g \\
 f^4 &= (f^2 ⋅ f^2) \operatorname{rem} g \\
 &⋮ \\
@@ -72,24 +62,24 @@ The full algorithm for square-and-multiply modular exponentiation using the idea
 1) Compute \(N=\{n_1, n_2, ..., n_k\}\) from the decomposition of \(m\)
 2) \(h=0\)
 3) \(\tilde{f}=f^1\)
-4) **for** \(n = 1,2,...,n_k\)
+4) **for** \(n = 0,1,...,n_k\)
 5) ..... **if** \(n ∈ N\)
 6) ..... ..... \(h = h + \tilde{f}\)
 7) ..... \(\tilde{f}=(\tilde{f}⋅\tilde{f}) \operatorname{rem} g\)
 8) **return** \(h\)
 
-**Analysis**: There are \(\log m\) iterations in the for-loop. Inside the for-loop, there are the following operations
+**Analysis**: There are \(\log m+1\) iterations in the for-loop. Inside the for-loop, there are the following operations
 
-- Maximum of one polynomial addition. (Horner's rule \(O(d).\))
-- One polynomial multiplication.  (Fast polynomial multiplication \(O(M(d)).\))
-- One polynomial remainder. (Fast polynomial remaindering \(O(M(d)).\))
+- Maximum of one polynomial addition. *Polynomial addition (Horner's rule) \(O(d).\)*
+- One polynomial multiplication. *Fast polynomial multiplication \(O(M(d)).\)*
+- One polynomial remainder. *Fast polynomial remaindering (Euclidean algorithm) \(O(M(d) \log d).\)*
 
-TODO: verify the complexity of the operations
-
-Total number of operations in \(𝔽_q[x]\) is
+The total number of operations in \(𝔽_q[x]\) is
 \[
-O(M(d) \log m).
+O((M(d) \log d) \log m).
 \]
+
+**NOTE**: I'm not sure how to get rid of the \(\log d\) term arising from the remainder.
 
 
 ## Problem 3
@@ -101,27 +91,28 @@ Above we write \(d_j\) for a sum of \(d_j\) copies of the multiplicative identit
 
 ---
 
-Product rule
+Let \(f\) and \(g\) be polynomials in \(𝔽_q[x].\) The formal derivative satisfies two properties:
+
+1) The product rule
 \[
 (fg)'=f'g + fg'
 \]
-
-Chain rule
+2) The chain rule
 \[
 (f(g))'=f'(g)g'
 \]
 
-Generalizing the product rule gives
+The product rule where \(f=f_1 f_2 ⋯ f_r\) can be generalized into
 \[
-\left(∏_{i=1}^r f_i\right)' = ∑_{i=1}^r f_i' \frac{f}{f_i}
+\left(∏_{i=1}^r f_i\right)' = ∑_{i=1}^r f_i' \frac{f}{f_i}.
 \]
 
-Using chain rule
+Also, the chain rule gives the derivative
 \[
-(f^d)'=d f^{d-1} f', d∈ℤ_{≥1}
+(f^d)'=d f^{d-1} f', d∈ℤ_{≥1}.
 \]
 
-Therefore the formal derivative satisfies
+Therefore using the rules above, the formal derivative satisfies
 \[
 \begin{aligned}
 f' &= (f_1^{d_1}f_2^{d_2}⋯f_r^{d_r})' \\
