@@ -133,11 +133,11 @@ Let \(k≥2\) divide \(q-1.\) Show that \(α∈𝔽_q^×\) a \(k\)-th power if a
 
 ---
 
-Multiplicative order of \(q-1\) implies that \(γ\) is a generator of the multiplicative group \(𝔽_q^×=𝔽_q∖\{0\}.\) Therefore forall \(β∈𝔽_q^×\) there exists unique \(a∈\{0,1,...,q-2\}\) such that
+Multiplicative order of \(q-1\) implies that \(γ\) is a generator of the multiplicative group \(𝔽_q^×=𝔽_q∖\{0\}.\) Therefore forall \(β∈𝔽_q^×\) there exists unique \(a∈A=\{0,1,...,q-2\}\) such that
 \[
 γ^a=β.
 \]
-Then all \(k\)-th powers \(α\) can be generated such that forall \(a∈\{0,1,...,q-2\}\)
+Then all \(k\)-th powers \(α\) can be generated such that for all \(a∈A\)
 \[
 α=β^k=(γ^a)^k=γ^{ak}=γ^{ak\mod(q-1)}=γ^s.
 \]
@@ -148,26 +148,43 @@ Therefore \(s=ak\) which implies \(s\) is divisible by \(k.\)
 
 
 ### (b)
+Suppose that \(q\) is odd. Show that \(𝔽_q^×\) has exactly \((q-1)/2\) elements that are squares and exactly \((q-1)/2\) elements that are non-squares. Show that for each square \(α∈𝔽_q^×\) it holds that \(α^{(q-1)/2}=1,\) and that for each non-square \(α∈𝔽_q^×\) it holds that \(α^{(q-1)/2}=-1.\)
 
-Generate all squares
+---
+
+
+Let \(A=\{0,1,...,q-2\}\) be a set and its cardinality be \(|A|=q-1.\)
+
+Then all squares are generated
 \[
-β^2=γ^{2a}=γ^{2a\mod (q-1)}
+β^2=(γ^{a})^2=γ^{2a}=γ^{2a\mod (q-1)}=γ^s.
+\]
+where for any \(a∈A.\) Equivalently \(γ^s\) is a square if
+\[
+\begin{aligned}
+s∈2A&=\{2a\mod(q-1)|a∈A\} \\
+&=\{0,2,...,q-2\}.
+\end{aligned}
+\]
+The amount of squares is therefore
+\[
+|2A|=|A|/2=(q-1)/2.
+\]
+If \(α∈𝔽_q^×\) is a square then there exists \(β∈𝔽_q^×\) such that \(α=β^2\) and therefore
+\[
+α^{(q-1)/2}=β^{q-1}=1.
 \]
 
+Similarly \(γ^t\) is a non-squares if
 \[
-A=\{0,1,...,q-2\} \\
-2A=\{2a\mod(q-1)|a∈A\} \\
-=\{0,2,...,q-2\} \\
-A∖2A
+t∈(A∖2A).
+\]
+The amount of non-square is
+\[
+|A∖2A|=|A|-|2A|=(q-1)/2.
 \]
 
-\[
-|A|=q-1 \\
-|2A|=(q-1)/2 \\
-\]
+TODO: non-square \(μ\) then \(μ^{(q-1)/2}\)
 
-\[
-α=β^2 ⟹ α^{(q-1)/2}=β^{q-1}=1
-\]
 
 ## References
