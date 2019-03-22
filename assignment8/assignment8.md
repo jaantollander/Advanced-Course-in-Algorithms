@@ -126,4 +126,48 @@ f' &= (f_1^{d_1}f_2^{d_2}⋯f_r^{d_r})' \\
 
 
 ## Problem 4
+Squares and non-squares. Let \(q\) be a prime power and let \(γ∈𝔽_q^×\) be an element with multiplicative order \(q-1.\) For \(k∈ℤ_{≥2}\) let us say that an element \(α∈𝔽_q\) is a \(k\)-th power if there exists an element \(β∈𝔽_q\) with \(α=β^k.\)
+
+### (a)
+Let \(k≥2\) divide \(q-1.\) Show that \(α∈𝔽_q^×\) a \(k\)-th power if and only if there exists an \(s∈\{0,1,...,q-2\}\) such that \(γ^s=α\) and \(k\) divides \(s.\)
+
+---
+
+Multiplicative order of \(q-1\) implies that \(γ\) is a generator of the multiplicative group \(𝔽_q^×=𝔽_q∖\{0\}.\) Therefore forall \(β∈𝔽_q^×\) there exists unique \(a∈\{0,1,...,q-2\}\) such that
+\[
+γ^a=β.
+\]
+Then all \(k\)-th powers \(α\) can be generated such that forall \(a∈\{0,1,...,q-2\}\)
+\[
+α=β^k=(γ^a)^k=γ^{ak}=γ^{ak\mod(q-1)}=γ^s.
+\]
+
+Therefore \(s=ak\) which implies \(s\) is divisible by \(k.\)
+
+<!-- TODO: modulo \(q-1\)? -->
+
+
+### (b)
+
+Generate all squares
+\[
+β^2=γ^{2a}=γ^{2a\mod (q-1)}
+\]
+
+\[
+A=\{0,1,...,q-2\} \\
+2A=\{2a\mod(q-1)|a∈A\} \\
+=\{0,2,...,q-2\} \\
+A∖2A
+\]
+
+\[
+|A|=q-1 \\
+|2A|=(q-1)/2 \\
+\]
+
+\[
+α=β^2 ⟹ α^{(q-1)/2}=β^{q-1}=1
+\]
+
 ## References
