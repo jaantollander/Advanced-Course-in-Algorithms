@@ -163,19 +163,19 @@ where for any \(a∈A.\) Equivalently \(γ^s\) is a square if
 \[
 \begin{aligned}
 s∈2A&=\{2a\mod(q-1)|a∈A\} \\
-&=\{0,2,...,q-2\}.
+&=\{0,2,...,q-3\}.
 \end{aligned}
 \]
 The amount of squares is therefore
 \[
 |2A|=|A|/2=(q-1)/2.
 \]
-If \(α∈𝔽_q^×\) is a square then there exists \(β∈𝔽_q^×\) such that \(α=β^2\) and therefore
+If for all squares \(α∈𝔽_q^×\) there exists \(β∈𝔽_q^×\) such that \(α=β^2\). Therefore
 \[
-α^{(q-1)/2}=β^{q-1}=1.
+α^{(q-1)/2}=β^{q-1}=(γ^a)^{q-1}=(γ^{q-1})^a=1^a=1.
 \]
 
-Similarly \(γ^t\) is a non-squares if
+Similarly \(γ^t\) is a non-square if
 \[
 t∈(A∖2A).
 \]
@@ -183,8 +183,11 @@ The amount of non-square is
 \[
 |A∖2A|=|A|-|2A|=(q-1)/2.
 \]
-
-TODO: non-square \(μ\) then \(μ^{(q-1)/2}\)
+For all non-squares \(μ\)
+\[
+μ^{(q-1)/2} = (γ^{2a+1})^{(q-1)/2} = (γ^a)^{q-1} γ^{(q-1)/2} = γ^{(q-1)/2}.
+\]
+**NOTE:** Not sure how this is equal to \(-1.\)
 
 
 ## References
