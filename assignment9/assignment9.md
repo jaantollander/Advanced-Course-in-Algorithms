@@ -107,16 +107,29 @@ Your algorithm should run in time \(O((\log N)^c)\) for a constant \(c>0.\) Care
     1) \(N<b\)
 4) Otherwise repeat for \(N-b^{2^n}\) -->
 
-- \(O((\log m)^d)∈O((\log N)^c)\) for \(d≤c\) and \(m≤N\)
+1) Let \(k:=1\) and  \(M:=N\).
+2) Find largest \(b∈\{2,3,...,M\}\) such that \(b^k≤N\) using binary search. \(O(\log M)\)
+3) If no such \(b\) exists assert that \(N\) is not a prime power.
+4) If \(b^k=N\) and \(b\) is prime then return \((b, k).\) \(O((\log m)^d)\)
+5) Otherwise repeat with \(k:=k+1\) and \(M:=b.\)
+
+\(\operatorname{Prime-Power}(N)\)
+
+1) \(k=1\)
+2) \(M=N\)
+3) **while** \(True\)
+4) ..... \(b = \operatorname{Binary-Search}(\{2,3,...,M\}, b, k, N)\)
+5) ..... **if** \(b=NIL\)
+6) ..... ..... **return** \(NIL\)
+6) ..... **else if** \(b^k=N\) and \(\operatorname{Is-Prime}(b)\)
+7) ..... ..... **return** \((b, k)\)
+7) ..... **else**
+8) ..... ..... \(k = k + 1\)
+9) ..... ..... \(M=b\)
 
 ---
 
-1) Let \(k:=1\) and  \(M:=N\)
-2) Find largest \(b∈\{2,3,...,M\}\) such that \(b^k≤N\) (binary search)
-3) If no such \(b\) exists assert that \(N\) is not a prime power
-4) If \(b^k=N\) and \(b\) is prime then return \((b, k)\)
-5) Otherwise repeat with \(k:=k+1\) and \(M:=b\)
-
+\(O((\log m)^d)∈O((\log N)^c)\) for \(d≤c\) and \(m≤N\)
 
 ## Problem 4
 ## References
