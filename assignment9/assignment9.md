@@ -91,5 +91,32 @@ Therefore
 
 
 ## Problem 3
+Given an integer \(N∈ℤ_{≥2}\) as input, design an algorithm that either
+
+1) outputs a prime \(p\) and a positive integer \(a\) such that \(N=p^a\) or
+2) asserts that \(N\) is not a prime power.
+
+Your algorithm should run in time \(O((\log N)^c)\) for a constant \(c>0.\) Carefully justify the running time of your algorithm. You may assume that you have available a subroutine that tests whether a given \(m∈ℤ_{≥2}\) is prime in time \(O((\log m)^d)\) for a constant \(d>0.\)
+
+---
+
+<!-- 1) \(b, b^2, b^{2^2}, ..., b^{2^n}\)
+2) \(b^{2^n} ≤ N < b^{2^n+1}\)
+3) Terminates if
+    1) \(b^{2^n} = N\) return \(n_1 + n_2 + ... n_k\)
+    1) \(N<b\)
+4) Otherwise repeat for \(N-b^{2^n}\) -->
+
+- \(O((\log m)^d)∈O((\log N)^c)\) for \(d≤c\) and \(m≤N\)
+
+---
+
+1) Let \(k:=1\) and  \(M:=N\)
+2) Find largest \(b∈\{2,3,...,M\}\) such that \(b^k≤N\) (binary search)
+3) If no such \(b\) exists assert that \(N\) is not a prime power
+4) If \(b^k=N\) and \(b\) is prime then return \((b, k)\)
+5) Otherwise repeat with \(k:=k+1\) and \(M:=b\)
+
+
 ## Problem 4
 ## References
