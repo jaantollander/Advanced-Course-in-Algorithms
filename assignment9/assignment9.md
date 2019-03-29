@@ -100,36 +100,74 @@ Your algorithm should run in time \(O((\log N)^c)\) for a constant \(c>0.\) Care
 
 ---
 
-<!-- 1) \(b, b^2, b^{2^2}, ..., b^{2^n}\)
-2) \(b^{2^n} ≤ N < b^{2^n+1}\)
-3) Terminates if
-    1) \(b^{2^n} = N\) return \(n_1 + n_2 + ... n_k\)
-    1) \(N<b\)
-4) Otherwise repeat for \(N-b^{2^n}\) -->
+<!-- The algorithm
 
 1) Let \(k:=1\) and  \(M:=N\).
-2) Find largest \(b∈\{2,3,...,M\}\) such that \(b^k≤N\) using binary search. \(O(\log M)\)
+2) Find largest \(b∈\{2,3,...,M\}\) such that \(b^k≤N\) using binary search.
 3) If no such \(b\) exists assert that \(N\) is not a prime power.
-4) If \(b^k=N\) and \(b\) is prime then return \((b, k).\) \(O((\log m)^d)\)
-5) Otherwise repeat with \(k:=k+1\) and \(M:=b.\)
+4) If \(b^k=N\) and \(b\) is prime then return \((b, k).\)
+5) Otherwise repeat with \(k:=k+1\) and \(M:=b.\) -->
 
-\(\operatorname{Prime-Power}(N)\)
+The full algorithm \(\operatorname{Find-Prime-Power}(N)\) has two main subroutines \(\operatorname{Is-Prime}(n)\) and \(\operatorname{Find-kth-Power-Less-Eq-Than}(B, k, N)\) which are explained and analyzed below.
 
-1) \(k=1\)
-2) \(M=N\)
-3) **while** \(True\)
-4) ..... \(b = \operatorname{Binary-Search}(\{2,3,...,M\}, b, k, N)\)
-5) ..... **if** \(b=NIL\)
-6) ..... ..... **return** \(NIL\)
-6) ..... **else if** \(b^k=N\) and \(\operatorname{Is-Prime}(b)\)
-7) ..... ..... **return** \((b, k)\)
-7) ..... **else**
-8) ..... ..... \(k = k + 1\)
-9) ..... ..... \(M=b\)
+The subroutine \(\operatorname{Is-Prime}(n)\) tests whether integer \(n\) is prime in \(O((\log m)^d)\) time.
 
 ---
 
-\(O((\log m)^d)∈O((\log N)^c)\) for \(d≤c\) and \(m≤N\)
+**Input**: Monotonically increasing sequence \(B∈ℤ_{≥2}^n\) of length \(n\), an integer \(k∈ℤ_{≥1}\) and an integer \(N∈ℤ_{≥2}.\)
+
+**Output**: Largest element \(b∈B\) such that \(b^k≤N.\) If no such elements exists output \(NIL.\)
+
+\(\operatorname{Find-kth-Power-Less-Eq-Than}(B, k, N)\)
+
+1) **return** largest element \(b∈B\) such that \(b^k≤N\) using (modified) *binary search* or \(NIL\) if no such \(b\) exists.
+
+**Analysis**: The worst case performance of the binary search is \(O(\log n)\) iterations.
+
+---
+
+**Input**: An integer \(N∈ℤ_{≥2}.\)
+
+**Output**: A tuple \((b, k)\) where \(b\) is a prime and \(k\) is a positive integer such that \(N=b^k.\) If no such number exists outputs \(NIL.\)
+
+\(\operatorname{Find-Prime-Power}(N)\)
+
+1) \(k←0\)
+2) \(b←N\)
+3) **while** \(True\)
+4) ..... \(B←⟨2,3,...,b⟩\)
+5) ..... \(k←k+1\)
+4) ..... \(b←\operatorname{Find-kth-Power-Less-Eq-Than}(B, k, N)\)
+5) ..... **if** \(b=NIL\)
+6) ..... ..... **return** \(NIL\)
+6) ..... **if** \(b^k=N\) and \(\operatorname{Is-Prime}(b)\)
+7) ..... ..... **return** \((b, k)\)
+
+**Correctness**: Proof that the set of possible prime bases \(B\) for degree \(k\) can be limited to \(b.\) Let \(b^k≤N\). Then for all \(d>b\) we have
+\[
+N < d^{k} < d^{k+1}.
+\]
+Therefore \(d>b\) cannot be a prime base for degree \(k+1\) and the set \(B\) can be limited to \(b\) from previous iteration.
+
+**Analysis**: The progression of the value of \(b\) towards values \(2\) determines the number of iterations within the while loop. It follow the sequence
+\[⌊N^1⌋, ⌊N^{1/2}⌋, ⌊N^{1/3}⌋,..., 2.\]
+The number of elements in the sequence is given by solving the smallest positive integer  \(i\) such \(⌊N^{1/i}⌋=2.\)
+\[
+\begin{aligned}
+⌊N^{1/i}⌋&=2 \\
+2&≤N^{1/i}<(2+1) \\
+2^i&≤N< 3^i \\
+\log_3 N &< i ≤ \log_2 N
+\end{aligned}
+\]
+Therefore the while loop has \(O(\log N)\) iterations.
+
+Total number of operations consists of the number of iterations in the while loop multiplied by the sum of the number of operations in the primality test and finding \(k\)-th power less or equal than using binary search
+\[
+O(\log N) ⋅ (O((\log m)^d) + O(\log n)) ∈ O(\log N)^c
+\]
+where \(c>0\) is a constant, \(n≤M≤N\), \(d< c\) and \(m≤N.\)
+
 
 ## Problem 4
 ## References
